@@ -1,0 +1,3143 @@
+{
+  "experiment": "X5 V1.1 Layer-4 explainability",
+  "created": "2026-06-10",
+  "model_id": "V1.1-SM RidgeClassifier(alpha=1.0), 4 features, production refit 2026-06-10",
+  "attribution_method": "Exact linear attribution: contribution_i = coef_i * z_i (z standardized). Equals SHAP for a linear model with feature-independence baseline since E[z_i]=0; no shap library used.",
+  "production_refit": {
+    "note": "Refit on all 34 trucks for deployment/explanation only. Validation numbers are X2 nested-LOVO; resubstitution AUROC reported for transparency, never as a performance claim.",
+    "impute_medians": {
+      "vsi_withinwk_std_ratio_30d_w": 0.9995749913253229,
+      "rest_vsi_p05_delta90": 0.02086176288093885,
+      "vsi_range_trend": 0.0,
+      "dip_depth_last90_delta": 0.21630359032257424
+    },
+    "scaler_mean": {
+      "vsi_withinwk_std_ratio_30d_w": 1.2346347301876148,
+      "rest_vsi_p05_delta90": -0.2062557182520488,
+      "vsi_range_trend": 0.02951302714566809,
+      "dip_depth_last90_delta": 0.27274332177900074
+    },
+    "scaler_scale": {
+      "vsi_withinwk_std_ratio_30d_w": 0.6132979300138395,
+      "rest_vsi_p05_delta90": 0.8322083243267926,
+      "vsi_range_trend": 0.06507209360312269,
+      "dip_depth_last90_delta": 0.9372905767965194
+    },
+    "intercept": -0.17647058823529413,
+    "resubstitution_auroc": 0.9571
+  },
+  "coefficients": [
+    {
+      "feature": "vsi_withinwk_std_ratio_30d_w",
+      "coef_std": 0.8861859551553437,
+      "coef_raw_per_unit": 1.4449518118141151,
+      "expected_sign": "+",
+      "univariate_auroc_raw": 0.921,
+      "univariate_direction_matches_physics": true,
+      "multivariate_sign_matches_physics": true,
+      "verdict": "matches physics",
+      "physics_prior": "rising within-week electrical noise = volatility drift (common channel of A1 solenoid, A2 battery, A3 instability)"
+    },
+    {
+      "feature": "rest_vsi_p05_delta90",
+      "coef_std": -0.2703733947429937,
+      "coef_raw_per_unit": -0.32488667421310624,
+      "expected_sign": "-",
+      "univariate_auroc_raw": 0.243,
+      "univariate_direction_matches_physics": true,
+      "multivariate_sign_matches_physics": true,
+      "verdict": "matches physics",
+      "physics_prior": "falling engine-off rest-voltage floor = battery floor sagging vs own baseline (battery-cascade pathway, D section 3)"
+    },
+    {
+      "feature": "vsi_range_trend",
+      "coef_std": -0.4138897302970003,
+      "coef_raw_per_unit": -6.360479698430027,
+      "expected_sign": "+",
+      "univariate_auroc_raw": 0.732,
+      "univariate_direction_matches_physics": true,
+      "multivariate_sign_matches_physics": false,
+      "verdict": "FLAGGED: multivariate sign contradicts physics -- suppressor effect (feature is physics-consistent univariately but strongly correlated with a dominant feature; ridge assigns it a corrective negative weight)",
+      "physics_prior": "widening weekly drive-voltage envelope = regulation instability / electrical degradation"
+    },
+    {
+      "feature": "dip_depth_last90_delta",
+      "coef_std": 0.14086126993988551,
+      "coef_raw_per_unit": 0.1502855927788397,
+      "expected_sign": "+",
+      "univariate_auroc_raw": 0.739,
+      "univariate_direction_matches_physics": true,
+      "multivariate_sign_matches_physics": true,
+      "verdict": "matches physics",
+      "physics_prior": "crank dips deepening vs own baseline = battery/cascade load signature (E2: A2 VINs dip_depth +1.1..+3.6 V)"
+    }
+  ],
+  "physics_sign_check": {
+    "univariate_all_match": true,
+    "multivariate_all_match": false,
+    "suppressors": [
+      "vsi_range_trend"
+    ],
+    "note": "Univariate direction is the physics test; a multivariate sign flip for a feature correlated r=+0.82 with the dominant feature is a ridge suppressor effect, not a physics contradiction."
+  },
+  "feature_correlations_pearson": {
+    "vsi_withinwk_std_ratio_30d_w": {
+      "vsi_withinwk_std_ratio_30d_w": 1.0,
+      "rest_vsi_p05_delta90": -0.208,
+      "vsi_range_trend": 0.821,
+      "dip_depth_last90_delta": 0.268
+    },
+    "rest_vsi_p05_delta90": {
+      "vsi_withinwk_std_ratio_30d_w": -0.208,
+      "rest_vsi_p05_delta90": 1.0,
+      "vsi_range_trend": -0.379,
+      "dip_depth_last90_delta": -0.763
+    },
+    "vsi_range_trend": {
+      "vsi_withinwk_std_ratio_30d_w": 0.821,
+      "rest_vsi_p05_delta90": -0.379,
+      "vsi_range_trend": 1.0,
+      "dip_depth_last90_delta": 0.493
+    },
+    "dip_depth_last90_delta": {
+      "vsi_withinwk_std_ratio_30d_w": 0.268,
+      "rest_vsi_p05_delta90": -0.763,
+      "vsi_range_trend": 0.493,
+      "dip_depth_last90_delta": 1.0
+    }
+  },
+  "feature_correlations_spearman": {
+    "vsi_withinwk_std_ratio_30d_w": {
+      "vsi_withinwk_std_ratio_30d_w": 1.0,
+      "rest_vsi_p05_delta90": -0.267,
+      "vsi_range_trend": 0.638,
+      "dip_depth_last90_delta": 0.254
+    },
+    "rest_vsi_p05_delta90": {
+      "vsi_withinwk_std_ratio_30d_w": -0.267,
+      "rest_vsi_p05_delta90": 1.0,
+      "vsi_range_trend": -0.126,
+      "dip_depth_last90_delta": -0.592
+    },
+    "vsi_range_trend": {
+      "vsi_withinwk_std_ratio_30d_w": 0.638,
+      "rest_vsi_p05_delta90": -0.126,
+      "vsi_range_trend": 1.0,
+      "dip_depth_last90_delta": 0.179
+    },
+    "dip_depth_last90_delta": {
+      "vsi_withinwk_std_ratio_30d_w": 0.254,
+      "rest_vsi_p05_delta90": -0.592,
+      "vsi_range_trend": 0.179,
+      "dip_depth_last90_delta": 1.0
+    }
+  },
+  "calibration_bridge": {
+    "a": 3.365455215015245,
+    "b": 0.3562980229258466,
+    "spearman_vs_oof_recal": 0.9685255920550038,
+    "rmse": 0.06935342874462093,
+    "purpose": "maps production decision values to the OOF recalibrated probability scale for counterfactuals"
+  },
+  "recomputed_headline": {
+    "nested_oof_auroc_official": 0.9321,
+    "nested_oof_auroc_recomputed_on_prob": 0.9339,
+    "auroc_note": "official headline pooled on raw per-fold decision values (X2); `prob` is per-fold sigmoid-mapped, recomputation differs +0.002",
+    "brier_recal": 0.124,
+    "youden_confusion": {
+      "tp": 13,
+      "fn": 1,
+      "tn": 15,
+      "fp": 5
+    },
+    "red_tier": {
+      "recall": "10/14",
+      "specificity": "18/20"
+    },
+    "tier_counts": {
+      "AMBER": {
+        "failed": 0,
+        "nonfailed": 2
+      },
+      "GREEN": {
+        "failed": 4,
+        "nonfailed": 16
+      },
+      "RED": {
+        "failed": 10,
+        "nonfailed": 2
+      }
+    },
+    "g3_horizon": {
+      "k0_10_auroc_min": 0.8357,
+      "k0_10_auroc_max": 0.9214,
+      "k11_auroc": 0.5357
+    }
+  },
+  "tier_rule": "GREEN < 0.35 <= AMBER < 0.55 <= RED on recalibrated probability",
+  "cards_ordered_by_prob_recal_desc": [
+    {
+      "vin_label": "VIN6_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.998,
+      "prob_decision_oof": 0.8247,
+      "prob_production_bridge": 0.9952,
+      "tier_production": "RED",
+      "archetype": "A2",
+      "archetype_full": "A2_battery_cascade",
+      "decision_value_production": 1.4774587695748076,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 2.0667603425637653,
+          "imputed": false,
+          "z": 1.3568048604980176,
+          "contribution": 1.2023814112598485,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 2.07x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.2000002861022949,
+          "imputed": false,
+          "z": 2.619975007972472,
+          "contribution": -1.0843807494346078,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.200 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -3.15279193889042,
+          "imputed": false,
+          "z": -3.5406233445477073,
+          "contribution": 0.9572903531716559,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -3.15 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 4.123001567522684,
+          "imputed": false,
+          "z": 4.107859762020794,
+          "contribution": 0.578638342813205,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +4.12 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 1.06 x (ratio) (vsi_withinwk_std_ratio_30d_w: 2.07 -> 1.01), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -1.720746814493672,
+          "delta_raw": -1.0553304594068773,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.011429883156888,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 5.639984144268711,
+          "delta_raw": 4.693641753931543,
+          "unit": "V",
+          "new_raw_value": 1.5408498150411232,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 3.684318666926927,
+          "delta_raw": 0.2397463291580012,
+          "unit": "V/wk",
+          "new_raw_value": 0.4397466152602961,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -10.825556663186143,
+          "delta_raw": -10.146692248981143,
+          "unit": "V",
+          "new_raw_value": -6.023690681458459,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN14_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9977,
+      "prob_decision_oof": 0.798,
+      "prob_production_bridge": 0.9869,
+      "tier_production": "RED",
+      "archetype": "A1+A2",
+      "archetype_full": "A1+A2_mixed",
+      "decision_value_production": 1.1786025625406429,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 2.542773789747764,
+          "imputed": false,
+          "z": 2.132958543542826,
+          "contribution": 1.8901979042162502,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 2.54x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.2018332799275716,
+          "imputed": false,
+          "z": 2.6481436702020327,
+          "contribution": -1.0960394694476279,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.202 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -1.6029343537116,
+          "imputed": false,
+          "z": -1.6782800587693976,
+          "contribution": 0.45376227681895304,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -1.60 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.9857354137491674,
+          "imputed": false,
+          "z": 0.7606948257252706,
+          "contribution": 0.10715243918836151,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +0.99 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.85 x (ratio) (vsi_withinwk_std_ratio_30d_w: 2.54 -> 1.69), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -1.3835081059635004,
+          "delta_raw": -0.8485026575447825,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.6942711322029815,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 4.534637934748925,
+          "delta_raw": 3.7737634371061106,
+          "unit": "V",
+          "new_raw_value": 2.1708290833945103,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 2.962251446704501,
+          "delta_raw": 0.1927599034159409,
+          "unit": "V/wk",
+          "new_raw_value": 0.3945931833435125,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -8.703921616436205,
+          "delta_raw": -8.158103712261184,
+          "unit": "V",
+          "new_raw_value": -7.1723682985120165,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN10_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9953,
+      "prob_decision_oof": 0.7818,
+      "prob_production_bridge": 0.9872,
+      "tier_production": "RED",
+      "archetype": "A1",
+      "archetype_full": "A1_solenoid_intermittency",
+      "decision_value_production": 1.1842161925895915,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 2.533696381898367,
+          "imputed": false,
+          "z": 2.1181575676954236,
+          "contribution": 1.8770814872976886,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 2.53x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0655553605821397,
+          "imputed": false,
+          "z": 0.5538831078080145,
+          "contribution": -0.2292465301067235,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.066 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.7930258170418112,
+          "imputed": false,
+          "z": -1.1370744198276352,
+          "contribution": -0.16016974679307924,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.79 V vs own baseline -- dips not deepening (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.1845834255218505,
+          "imputed": false,
+          "z": 0.4696409929449637,
+          "contribution": -0.1269784295730002,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.18 V vs own baseline -- battery floor stable/recovering (protective)"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.85 x (ratio) (vsi_withinwk_std_ratio_30d_w: 2.53 -> 1.68), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -1.389842702011081,
+          "delta_raw": -0.8523876521882375,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.6813087297101297,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 4.555400443775691,
+          "delta_raw": 3.7910421699520955,
+          "unit": "V",
+          "new_raw_value": 3.975625595473946,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 2.9758145521357964,
+          "delta_raw": 0.19364248308211515,
+          "unit": "V/wk",
+          "new_raw_value": 0.25919784366425486,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -8.74377380612145,
+          "delta_raw": -8.195456794117872,
+          "unit": "V",
+          "new_raw_value": -8.988482611159682,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN5_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9918,
+      "prob_decision_oof": 0.7562,
+      "prob_production_bridge": 0.9811,
+      "tier_production": "RED",
+      "archetype": "A4",
+      "archetype_full": "A4_silent_abrupt",
+      "decision_value_production": 1.0673084859524689,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 3.0663120962849093,
+          "imputed": false,
+          "z": 2.9866028832935427,
+          "contribution": 2.6466855288011915,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 3.07x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.1980909000743519,
+          "imputed": false,
+          "z": 2.590632383166385,
+          "contribution": -1.0722361383674104,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.198 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.7854385041353993,
+          "imputed": false,
+          "z": 1.1916417961688501,
+          "contribution": -0.3221882377478106,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.79 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.77 x (ratio) (vsi_withinwk_std_ratio_30d_w: 3.07 -> 2.29), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -1.2579203825960443,
+          "delta_raw": -0.7714799667683709,
+          "unit": "x (ratio)",
+          "new_raw_value": 2.2948321295165384,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 4.123006913531155,
+          "delta_raw": 3.4312006746975436,
+          "unit": "V",
+          "new_raw_value": 4.216639178832943,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 2.6933535532769177,
+          "delta_raw": 0.17526215452513869,
+          "unit": "V/wk",
+          "new_raw_value": 0.3733530545994906,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -7.913824546917591,
+          "delta_raw": -7.417553174246843,
+          "unit": "V",
+          "new_raw_value": -7.201249583924269,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "Zero crank events / no VSI in final 120 d window: dip_depth_last90_delta IMPUTED; card rests on weekly VSI only.",
+        "Silent gap of 32 d before failure: features describe the pre-silence state; the terminal period is untelemetered."
+      ]
+    },
+    {
+      "vin_label": "VIN11_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9578,
+      "prob_decision_oof": 0.6507,
+      "prob_production_bridge": 0.9562,
+      "tier_production": "RED",
+      "archetype": "A3",
+      "archetype_full": "A3_vsi_volatility_only",
+      "decision_value_production": 0.8103491356952153,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 2.0464135744708924,
+          "imputed": false,
+          "z": 1.323628867074375,
+          "contribution": 1.1729813118394905,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 2.05x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0666667620340983,
+          "imputed": false,
+          "z": 0.5709626482134159,
+          "contribution": -0.2363155764787118,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.067 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 1.099743809199027,
+          "imputed": false,
+          "z": 0.8823309525276104,
+          "contribution": 0.12428625848030804,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +1.10 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.0219231385451088,
+          "imputed": false,
+          "z": 0.2741847805737113,
+          "contribution": -0.07413226991057717,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.02 V vs own baseline -- battery floor stable/recovering (protective)"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.59 x (ratio) (vsi_withinwk_std_ratio_30d_w: 2.05 -> 1.45), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.9679594000704187,
+          "delta_raw": -0.5936474964006256,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.4527660780702667,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 3.172619947751815,
+          "delta_raw": 2.640280730444294,
+          "unit": "V",
+          "new_raw_value": 2.662203868989403,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 2.072513432230996,
+          "delta_raw": 0.13486278805586446,
+          "unit": "V/wk",
+          "new_raw_value": 0.20152955008996276,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -6.089622973504868,
+          "delta_raw": -5.707746229309714,
+          "unit": "V",
+          "new_raw_value": -4.608002420110687,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN5_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9575,
+      "prob_decision_oof": 0.5952,
+      "prob_production_bridge": 0.7645,
+      "tier_production": "RED",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": 0.24404421086105624,
+      "drivers": [
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -1.1896012216551703,
+          "imputed": false,
+          "z": -1.1816097900710019,
+          "contribution": 0.3194758502030529,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -1.19 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.1066055326732032,
+          "imputed": false,
+          "z": -0.20875530675853185,
+          "contribution": -0.18499602091355632,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.11x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.9269508076043538,
+          "imputed": false,
+          "z": 0.6979772356842737,
+          "contribution": 0.09831795980761757,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +0.93 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.20 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.11 -> 0.90), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.32892317800020004,
+          "delta_raw": -0.20172790420109635,
+          "unit": "x (ratio)",
+          "new_raw_value": 0.9048776284721068,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 1.0780909155130245,
+          "delta_raw": 0.8971962342710318,
+          "unit": "V",
+          "new_raw_value": -0.29240498738413856,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 0.7042627041257394,
+          "delta_raw": 0.04582784860405842,
+          "unit": "V/wk",
+          "new_raw_value": 0.04582784860405842,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -2.069320408606529,
+          "delta_raw": -1.9395545193596226,
+          "unit": "V",
+          "new_raw_value": -1.0126037117552689,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": [
+        "Battery-replacement step detected (E5): rest-VSI baseline re-anchored post-step; rest_vsi_p05_delta90 is step-aware."
+      ]
+    },
+    {
+      "vin_label": "VIN12_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9549,
+      "prob_decision_oof": 0.658,
+      "prob_production_bridge": 0.9362,
+      "tier_production": "RED",
+      "archetype": "A3",
+      "archetype_full": "A3_vsi_volatility_only",
+      "decision_value_production": 0.6923578594972725,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 2.205909672570808,
+          "imputed": false,
+          "z": 1.5836918646721598,
+          "contribution": 1.4034454877662452,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 2.21x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.1000001033147176,
+          "imputed": false,
+          "z": 1.0832151275007844,
+          "contribution": -0.44833161697493046,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.100 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.0552523535651134,
+          "imputed": false,
+          "z": -0.34994022501019995,
+          "contribution": -0.04929302449798605,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.06 V vs own baseline -- dips not deepening (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.0923932502072766,
+          "imputed": false,
+          "z": 0.13681966968652978,
+          "contribution": -0.03699239856076213,
+          "direction": "protective",
+          "gloss": "rest-voltage floor -0.09 V vs own baseline -- battery floor stable/recovering (protective)"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.51 x (ratio) (vsi_withinwk_std_ratio_30d_w: 2.21 -> 1.69), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.8348143468098312,
+          "delta_raw": -0.511989910844325,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.693919761726483,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 2.7362187393041393,
+          "delta_raw": 2.2771040120278667,
+          "unit": "V",
+          "new_raw_value": 2.18471076182059,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 1.7874344182789605,
+          "delta_raw": 0.11631209977569167,
+          "unit": "V/wk",
+          "new_raw_value": 0.21631220309040927,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -5.251981255179475,
+          "delta_raw": -4.922632539991678,
+          "unit": "V",
+          "new_raw_value": -4.977884893556792,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN7_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9056,
+      "prob_decision_oof": 0.6116,
+      "prob_production_bridge": 0.8817,
+      "tier_production": "RED",
+      "archetype": "A3",
+      "archetype_full": "A3_vsi_volatility_only",
+      "decision_value_production": 0.4910076854624452,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.864850466392015,
+          "imputed": false,
+          "z": 1.0275849719404382,
+          "contribution": 0.9106313698623143,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 1.86x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0792501211166381,
+          "imputed": false,
+          "z": 0.7643383087428928,
+          "contribution": -0.3163517764612613,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.079 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.4621366517156637,
+          "imputed": false,
+          "z": -0.3074722109642528,
+          "contribution": 0.08313230546753897,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -0.46 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.2066450019921468,
+          "imputed": false,
+          "z": -0.07052062767211999,
+          "contribution": -0.009933625170852653,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.21 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.37 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.86 -> 1.49), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.6076045012198821,
+          "delta_raw": -0.3726425828652451,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.4922078835267698,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 1.9915072479008422,
+          "delta_raw": 1.6573489096602223,
+          "unit": "V",
+          "new_raw_value": 1.1952122579445585,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 1.3009517653019425,
+          "delta_raw": 0.0846556550448757,
+          "unit": "V/wk",
+          "new_raw_value": 0.1639057761615138,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -3.822559426732548,
+          "delta_raw": -3.5828489299211226,
+          "unit": "V",
+          "new_raw_value": -3.3762039279289757,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN2_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.9042,
+      "prob_decision_oof": 0.5984,
+      "prob_production_bridge": 0.9045,
+      "tier_production": "RED",
+      "archetype": "A2",
+      "archetype_full": "A2_battery_cascade",
+      "decision_value_production": 0.5620634568410589,
+      "drivers": [
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -1.6566667312230834,
+          "imputed": false,
+          "z": -1.7428460766050753,
+          "contribution": 0.4712192102462219,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -1.66 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 1.5774736633985595,
+          "imputed": false,
+          "z": 1.3920233211763193,
+          "contribution": 0.19608217280683346,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +1.58 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.154020036310942,
+          "imputed": false,
+          "z": -0.13144458823602034,
+          "contribution": -0.11648434797593854,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.15x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.42 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.15 -> 0.73), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.6877860601412915,
+          "delta_raw": -0.42181776697702816,
+          "unit": "x (ratio)",
+          "new_raw_value": 0.7322022693339139,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 2.254313325570416,
+          "delta_raw": 1.8760583151805152,
+          "unit": "V",
+          "new_raw_value": 0.21939158395743186,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 1.4726297900928094,
+          "delta_raw": 0.0958271035436662,
+          "unit": "V/wk",
+          "new_raw_value": 0.0958271035436662,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -4.326997384795383,
+          "delta_raw": -4.055653874591895,
+          "unit": "V",
+          "new_raw_value": -2.4781802111933358,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN8_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.7163,
+      "prob_decision_oof": 0.5207,
+      "prob_production_bridge": 0.7419,
+      "tier_production": "RED",
+      "archetype": "A4",
+      "archetype_full": "A4_silent_abrupt",
+      "decision_value_production": 0.20788208337331085,
+      "drivers": [
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": -0.0444446139865451,
+          "imputed": false,
+          "z": -1.1365492799921855,
+          "contribution": 0.4704060749652155,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend -0.044 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.1399506640399242,
+          "imputed": false,
+          "z": -0.15438510634717786,
+          "contribution": -0.13681391293003314,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.14x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.3886041885767213,
+          "imputed": false,
+          "z": -0.2191139706180921,
+          "contribution": 0.05924258807163014,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -0.39 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.18 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.14 -> 0.96), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.2881167002204813,
+          "delta_raw": -0.17670137584763912,
+          "unit": "x (ratio)",
+          "new_raw_value": 0.9632492881922851,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 0.9443420770885941,
+          "delta_raw": 0.7858893375651816,
+          "unit": "V",
+          "new_raw_value": 0.39728514898846035,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 0.6168912985540282,
+          "delta_raw": 0.04014240832245963,
+          "unit": "V/wk",
+          "new_raw_value": -0.0043022056640854706,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -1.8125988306796927,
+          "delta_raw": -1.6989318035084657,
+          "unit": "V",
+          "new_raw_value": -1.4826282131858914,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "SMA-dead telematics config: no crank events observable; dip_depth_last90_delta is fold-median IMPUTED, not measured.",
+        "Silent gap of 37 d before failure: features describe the pre-silence state; the terminal period is untelemetered.",
+        "Battery-replacement step detected (E5): rest-VSI baseline re-anchored post-step; rest_vsi_p05_delta90 is step-aware."
+      ]
+    },
+    {
+      "vin_label": "VIN13_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.654,
+      "prob_decision_oof": 0.4964,
+      "prob_production_bridge": 0.7859,
+      "tier_production": "RED",
+      "archetype": "A2",
+      "archetype_full": "A2_battery_cascade",
+      "decision_value_production": 0.2804552244225159,
+      "drivers": [
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": -0.0800002098083496,
+          "imputed": false,
+          "z": -1.6829524130872953,
+          "contribution": 0.6965567203553865,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend -0.080 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.9356136200743806,
+          "imputed": false,
+          "z": -0.48756256214086124,
+          "contribution": -0.43207109482878575,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.94x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.6553843625929936,
+          "imputed": false,
+          "z": -0.5396829510258304,
+          "contribution": 0.1459159115537706,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -0.66 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.5823157479656134,
+          "imputed": false,
+          "z": 0.3302843684235813,
+          "contribution": 0.046524275577438684,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +0.58 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would drop RED -> AMBER if within-week noise ratio fell by 0.23 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.94 -> 0.71), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.3700105066242212,
+          "delta_raw": -0.2269266777960069,
+          "unit": "x (ratio)",
+          "new_raw_value": 0.7086869422783737,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 1.21276028117332,
+          "delta_raw": 1.0092692014053384,
+          "unit": "V",
+          "new_raw_value": 0.3538848388123448,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 0.7922354439550938,
+          "delta_raw": 0.051552418964757325,
+          "unit": "V/wk",
+          "new_raw_value": -0.028447790843592273,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -2.3278088744353442,
+          "delta_raw": -2.1818333225915603,
+          "unit": "V",
+          "new_raw_value": -1.599517574625947,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN20_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "RED",
+      "prob_recal_oof": 0.6228,
+      "prob_decision_oof": 0.4924,
+      "prob_production_bridge": 0.5176,
+      "tier_production": "AMBER",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.08494497544844695,
+      "drivers": [
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.1829059144370575,
+          "imputed": false,
+          "z": 0.4676252583797634,
+          "contribution": -0.1264334285757062,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.18 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.2614343158519334,
+          "imputed": false,
+          "z": 0.04369749896875384,
+          "contribution": 0.03872410986152477,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 1.26x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would escalate AMBER -> RED if within-week noise ratio rose by 0.03 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.26 -> 1.29), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.043672997271261005,
+          "delta_raw": 0.026784558823964435,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.2882188746758978,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -0.14314424996630357,
+          "delta_raw": -0.11912583640147303,
+          "unit": "V",
+          "new_raw_value": 0.06378007803558447,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.09350895653670113,
+          "delta_raw": -0.006084823572486547,
+          "unit": "V/wk",
+          "new_raw_value": -0.006084823572486547,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 0.2747554158630398,
+          "delta_raw": 0.25752566221223616,
+          "unit": "V",
+          "new_raw_value": 0.4738292525348104,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "SMA-dead telematics config: no crank events observable; dip_depth_last90_delta is fold-median IMPUTED, not measured.",
+        "Production-refit tier (AMBER) differs from shipped OOF tier (RED); counterfactual is in production space."
+      ]
+    },
+    {
+      "vin_label": "VIN2_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "AMBER",
+      "prob_recal_oof": 0.4517,
+      "prob_decision_oof": 0.4561,
+      "prob_production_bridge": 0.4066,
+      "tier_production": "AMBER",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.21815720486354576,
+      "drivers": [
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": -0.0121670722961425,
+          "imputed": false,
+          "z": -0.6405218755680305,
+          "contribution": 0.26510542632818096,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend -0.012 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.0751952769952569,
+          "imputed": false,
+          "z": -0.2599706364389003,
+          "contribution": -0.23038232676494944,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.08x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.0198003872167689,
+          "imputed": false,
+          "z": 0.27163403544621323,
+          "contribution": -0.07344261629133135,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.02 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.2530002456444959,
+          "imputed": false,
+          "z": -0.02106398658352343,
+          "contribution": -0.0029670999001518207,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.25 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would return to GREEN if within-week noise ratio fell by 0.05 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.08 -> 1.02), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.08232828058528927,
+          "delta_raw": -0.05049176406455647,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.0247035129307003,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 0.2698422529188675,
+          "delta_raw": 0.22456496913417726,
+          "unit": "V",
+          "new_raw_value": 0.24436535635094617,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 0.1762744050557093,
+          "delta_raw": 0.011470544585619878,
+          "unit": "V/wk",
+          "new_raw_value": -0.0006965277105226222,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -0.517943406288383,
+          "delta_raw": -0.48546347402799245,
+          "unit": "V",
+          "new_raw_value": -0.23246322838349653,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN10_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "AMBER",
+      "prob_recal_oof": 0.4349,
+      "prob_decision_oof": 0.4541,
+      "prob_production_bridge": 0.2973,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.36145119880776855,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.7764335736200568,
+          "imputed": false,
+          "z": -0.7471102283962028,
+          "contribution": -0.6620785913576159,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.78x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -1.1230770991398735,
+          "imputed": false,
+          "z": -1.1016729274241268,
+          "contribution": 0.2978630492841129,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -1.12 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.05 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.78 -> 0.83), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.0808439655887515,
+          "delta_raw": 0.049581436749691364,
+          "unit": "x (ratio)",
+          "new_raw_value": 0.8260150103697482,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -0.2649772065476867,
+          "delta_raw": -0.22051623704584475,
+          "unit": "V",
+          "new_raw_value": -1.3435933361857182,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.17309631435504286,
+          "delta_raw": -0.011263739570066898,
+          "unit": "V/wk",
+          "new_raw_value": -0.011263739570066898,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 0.508605288695665,
+          "delta_raw": 0.4767109444033201,
+          "unit": "V",
+          "new_raw_value": 0.6930145347258944,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "SMA-dead telematics config: no crank events observable; dip_depth_last90_delta is fold-median IMPUTED, not measured.",
+        "Production-refit tier (GREEN) differs from shipped OOF tier (AMBER); counterfactual is in production space."
+      ]
+    },
+    {
+      "vin_label": "VIN4_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.3393,
+      "prob_decision_oof": 0.4286,
+      "prob_production_bridge": 0.3989,
+      "tier_production": "AMBER",
+      "archetype": "A4",
+      "archetype_full": "A4_silent_abrupt",
+      "decision_value_production": -0.22768224258501724,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.0980053557371023,
+          "imputed": false,
+          "z": -0.22277814380920763,
+          "contribution": -0.1974228621592972,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.10x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.1164099049364395,
+          "imputed": false,
+          "z": 0.10796072412312056,
+          "contribution": -0.02918970748007992,
+          "direction": "protective",
+          "gloss": "rest-voltage floor -0.12 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.1907920549818795,
+          "imputed": false,
+          "z": -0.08743421605412384,
+          "contribution": -0.01231609470958221,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.19 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would return to GREEN if within-week noise ratio fell by 0.04 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.10 -> 1.05), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": -0.07157992955799072,
+          "delta_raw": -0.043899822628452156,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.0541055331086502,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": 0.2346130554213637,
+          "delta_raw": 0.195246937717402,
+          "unit": "V",
+          "new_raw_value": 0.0788370327809625,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": 0.15326093788261352,
+          "delta_raw": 0.0099730100955998,
+          "unit": "V/wk",
+          "new_raw_value": 0.0099730100955998,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": -0.45032341588551056,
+          "delta_raw": -0.42208389422030906,
+          "unit": "V",
+          "new_raw_value": -0.23129183923842955,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": [
+        "Silent gap of 97 d before failure: features describe the pre-silence state; the terminal period is untelemetered.",
+        "Production-refit tier (AMBER) differs from shipped OOF tier (GREEN); counterfactual is in production space."
+      ]
+    },
+    {
+      "vin_label": "VIN3_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.3381,
+      "prob_decision_oof": 0.438,
+      "prob_production_bridge": 0.4997,
+      "tier_production": "AMBER",
+      "archetype": "A2",
+      "archetype_full": "A2_battery_cascade",
+      "decision_value_production": -0.1062123029743415,
+      "drivers": [
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.1196428026471819,
+          "imputed": false,
+          "z": 1.385075698520151,
+          "contribution": -0.5732686073014347,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.120 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -1.2507048203394966,
+          "imputed": false,
+          "z": -1.2550332309309036,
+          "contribution": 0.33932759516205596,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -1.25 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.3675314002748873,
+          "imputed": false,
+          "z": 0.2166918614649059,
+          "contribution": 0.19202928422666707,
+          "direction": "toward failure",
+          "gloss": "within-week voltage noise is 1.37x its own 40-week baseline -- electrical volatility is drifting up (volatility-drift pathway)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 1.01912233988444,
+          "imputed": false,
+          "z": 0.7963155040525646,
+          "contribution": 0.11217001317366429,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +1.02 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would escalate AMBER -> RED if within-week noise ratio rose by 0.04 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.37 -> 1.41), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.06767171605276832,
+          "delta_raw": 0.04150292337564713,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.4090343236505345,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -0.2218033486032476,
+          "delta_raw": -0.1845865930711801,
+          "unit": "V",
+          "new_raw_value": -1.4352914134106767,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.14489299911884848,
+          "delta_raw": -0.009428490801098881,
+          "unit": "V/wk",
+          "new_raw_value": 0.11021431184608302,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 0.4257360760187425,
+          "delta_raw": 0.399038412254694,
+          "unit": "V",
+          "new_raw_value": 1.418160752139134,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": [
+        "Production-refit tier (AMBER) differs from shipped OOF tier (GREEN); counterfactual is in production space."
+      ]
+    },
+    {
+      "vin_label": "VIN1_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.2596,
+      "prob_decision_oof": 0.4057,
+      "prob_production_bridge": 0.3245,
+      "tier_production": "GREEN",
+      "archetype": "A1->silent",
+      "archetype_full": "A1_solenoid_then_silent",
+      "decision_value_production": -0.3237751146586584,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.0116429639639088,
+          "imputed": false,
+          "z": -0.36359451958149286,
+          "contribution": -0.3222123566245736,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.01x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.0114957627795986,
+          "imputed": false,
+          "z": -0.2787263261434853,
+          "contribution": -0.03926174426625005,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.01 V vs own baseline -- dips not deepening (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.2876766153457595,
+          "imputed": false,
+          "z": -0.09783715773280134,
+          "contribution": 0.026452564468223236,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -0.29 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.02 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.01 -> 1.04), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.03832909167325849,
+          "delta_raw": 0.023507152582520126,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.035150116546429,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -0.12562886502568316,
+          "delta_raw": -0.10454938725010057,
+          "unit": "V",
+          "new_raw_value": -0.39222600259586005,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.08206703435315821,
+          "delta_raw": -0.005340273741159396,
+          "unit": "V/wk",
+          "new_raw_value": -0.005340273741159396,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 0.24113585465471857,
+          "delta_raw": 0.22601436429564284,
+          "unit": "V",
+          "new_raw_value": 0.23751012707524144,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": [
+        "Silent gap of 72 d before failure: features describe the pre-silence state; the terminal period is untelemetered."
+      ]
+    },
+    {
+      "vin_label": "VIN15_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.2542,
+      "prob_decision_oof": 0.3989,
+      "prob_production_bridge": 0.1306,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.6691546549643245,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.941389047238436,
+          "imputed": false,
+          "z": -0.47814556123246915,
+          "contribution": -0.4237258808840836,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.94x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.5712538118715642,
+          "imputed": false,
+          "z": 0.9342727144102678,
+          "contribution": -0.25260248541085556,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.57 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.2456435156164707,
+          "imputed": false,
+          "z": -0.028912918611805553,
+          "contribution": -0.004072710433327482,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.25 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.26 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.94 -> 1.20), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.42806618725284584,
+          "delta_raw": 0.26253210655108694,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.203921153789523,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.4030457522677517,
+          "delta_raw": -1.1676263544485699,
+          "unit": "V",
+          "new_raw_value": -0.5963725425770057,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.9165393950416622,
+          "delta_raw": -0.05964113730510048,
+          "unit": "V/wk",
+          "new_raw_value": -0.05964113730510048,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.693048580225499,
+          "delta_raw": 2.5241690571006052,
+          "unit": "V",
+          "new_raw_value": 2.769812572717076,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN18_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.2352,
+      "prob_decision_oof": 0.4008,
+      "prob_production_bridge": 0.1415,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.6415493896176753,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.826005798798151,
+          "imputed": false,
+          "z": -0.666281282541167,
+          "contribution": -0.5904491147708716,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.83x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.9043398297022254,
+          "imputed": false,
+          "z": -1.2558358961681575,
+          "contribution": -0.17689863917034088,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.90 V vs own baseline -- dips not deepening (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.5588461802555962,
+          "imputed": false,
+          "z": -0.4236805276957212,
+          "contribution": 0.1145519425595951,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -0.56 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.24 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.83 -> 1.07), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.39691554083822267,
+          "delta_raw": 0.24342747958640554,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.0694332783845564,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.3009452280172438,
+          "delta_raw": -1.0826574482491675,
+          "unit": "V",
+          "new_raw_value": -1.6415036285047637,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.8498422452311556,
+          "delta_raw": -0.055301014129569705,
+          "unit": "V/wk",
+          "new_raw_value": -0.055301014129569705,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.4970737366192317,
+          "delta_raw": 2.3404836828992797,
+          "unit": "V",
+          "new_raw_value": 1.4361438531970543,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": [
+        "Battery-replacement step detected (E5): rest-VSI baseline re-anchored post-step; rest_vsi_p05_delta90 is step-aware."
+      ]
+    },
+    {
+      "vin_label": "VIN9_F_SM",
+      "failed": 1,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.2239,
+      "prob_decision_oof": 0.4008,
+      "prob_production_bridge": 0.3133,
+      "tier_production": "GREEN",
+      "archetype": "A4",
+      "archetype_full": "A4_silent_abrupt",
+      "decision_value_production": -0.33899191855803285,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.1335239163957764,
+          "imputed": false,
+          "z": -0.1648641041223745,
+          "contribution": -0.1461002535825165,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.13x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.0222219918188528,
+          "imputed": false,
+          "z": 0.27454388930286966,
+          "contribution": -0.07422936335676154,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.02 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.019090799851851,
+          "imputed": false,
+          "z": -0.16016431494248012,
+          "contribution": 0.06629036511474692,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range widening at +0.019 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.03 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.13 -> 1.17), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.05550021000440722,
+          "delta_raw": 0.03403816391103633,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.1675620803068127,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -0.18190956495859986,
+          "delta_raw": -0.1513866542332122,
+          "unit": "V",
+          "new_raw_value": -0.12916466241435942,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.11883239185177298,
+          "delta_raw": -0.007732672525661525,
+          "unit": "V/wk",
+          "new_raw_value": 0.011358127326189477,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 0.3491627374584051,
+          "delta_raw": 0.32726694358824016,
+          "unit": "V",
+          "new_raw_value": 0.5435705339108143,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "SMA-dead telematics config: no crank events observable; dip_depth_last90_delta is fold-median IMPUTED, not measured.",
+        "Silent gap of 142 d before failure: features describe the pre-silence state; the terminal period is untelemetered.",
+        "SOLE MISS of the nested model (OOF prob 0.401 vs fold thr 0.406). A4 silent/abrupt + SMA-dead + 142 d gap: physics audit classifies this failure as unobservable in 5 s telemetry."
+      ]
+    },
+    {
+      "vin_label": "VIN19_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.1968,
+      "prob_decision_oof": 0.3875,
+      "prob_production_bridge": 0.1603,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.5978318099458838,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.9875070186867368,
+          "imputed": false,
+          "z": -0.4029488759163126,
+          "contribution": -0.35708763448266956,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.99x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.7932443110148117,
+          "imputed": false,
+          "z": -1.137307532139238,
+          "contribution": -0.16020258328933024,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.79 V vs own baseline -- dips not deepening (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.076267454359268,
+          "imputed": false,
+          "z": 0.33948611706072684,
+          "contribution": -0.09178801393782607,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.08 V vs own baseline -- battery floor stable/recovering (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.21 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.99 -> 1.20), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.347583254067634,
+          "delta_raw": 0.2131720902271544,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.2006791089138913,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.139251879034635,
+          "delta_raw": -0.9480948972375635,
+          "unit": "V",
+          "new_raw_value": -0.8718274428782955,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.7442160929697297,
+          "delta_raw": -0.0484276992626765,
+          "unit": "V/wk",
+          "new_raw_value": -0.0484276992626765,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.1867146173918632,
+          "delta_raw": 2.0495870050245997,
+          "unit": "V",
+          "new_raw_value": 1.256342694009788,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN13_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.146,
+      "prob_decision_oof": 0.3663,
+      "prob_production_bridge": 0.1574,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.6043299050608318,
+      "drivers": [
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0708336035410563,
+          "imputed": false,
+          "z": 0.634996879728568,
+          "contribution": -0.2628186872902938,
+          "direction": "protective",
+          "gloss": "weekly voltage range widening at +0.071 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 1.1708675388321912,
+          "imputed": false,
+          "z": -0.10397424846026251,
+          "contribution": -0.09214051868331675,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 1.17x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.0079772492759246,
+          "imputed": false,
+          "z": 0.23825581069081445,
+          "contribution": -0.06441803235371955,
+          "direction": "protective",
+          "gloss": "rest-voltage floor -0.01 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.22 x (ratio) (vsi_withinwk_std_ratio_30d_w: 1.17 -> 1.39), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.354915908209968,
+          "delta_raw": 0.21766919183415523,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.3885367306663463,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.1632856606170459,
+          "delta_raw": -0.9680960103354976,
+          "unit": "V",
+          "new_raw_value": -0.9760732596114222,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.7599161566323026,
+          "delta_raw": -0.04944933527490244,
+          "unit": "V/wk",
+          "new_raw_value": 0.021384268266153868,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.2328457868589653,
+          "delta_raw": 2.0928253154627177,
+          "unit": "V",
+          "new_raw_value": 2.309128905785292,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "SMA-dead telematics config: no crank events observable; dip_depth_last90_delta is fold-median IMPUTED, not measured."
+      ]
+    },
+    {
+      "vin_label": "VIN7_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.1431,
+      "prob_decision_oof": 0.3611,
+      "prob_production_bridge": 0.1642,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.5893637511371109,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.9800039249421856,
+          "imputed": false,
+          "z": -0.4151828871160275,
+          "contribution": -0.3679292433830701,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.98x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.2347010533694167,
+          "imputed": false,
+          "z": 0.5298634473263333,
+          "contribution": -0.14326097900384616,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.23 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.3222568300035267,
+          "imputed": false,
+          "z": -0.6348086351365279,
+          "contribution": -0.08941995051413675,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.32 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.21 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.98 -> 1.19), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.3380276311653409,
+          "delta_raw": 0.2073116464811852,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.1873155714233707,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.1079320118678886,
+          "delta_raw": -0.9220302430645877,
+          "unit": "V",
+          "new_raw_value": -0.687329189695171,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.7237563951591647,
+          "delta_raw": -0.04709634389165582,
+          "unit": "V/wk",
+          "new_raw_value": -0.04709634389165582,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.126598314220759,
+          "delta_raw": 1.9932405605504813,
+          "unit": "V",
+          "new_raw_value": 1.6709837305469546,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN11_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.1211,
+      "prob_decision_oof": 0.3496,
+      "prob_production_bridge": 0.1413,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.6420938533323927,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.9050615832584824,
+          "imputed": false,
+          "z": -0.5373785411630125,
+          "contribution": -0.47621731578052945,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.91x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.3128202987192701,
+          "imputed": false,
+          "z": 0.6237332670172708,
+          "contribution": -0.16864088081759768,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.31 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.24 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.91 -> 1.15), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.3975299307544135,
+          "delta_raw": 0.24380428365022674,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.148865866908709,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.302958975395143,
+          "delta_raw": -1.0843333055801465,
+          "unit": "V",
+          "new_raw_value": -0.7715130068608764,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.851157725357533,
+          "delta_raw": -0.05538661517548638,
+          "unit": "V/wk",
+          "new_raw_value": -0.05538661517548638,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.5009389844261682,
+          "delta_raw": 2.3441065432457044,
+          "unit": "V",
+          "new_raw_value": 2.5604101335682787,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "SMA-dead telematics config: no crank events observable; dip_depth_last90_delta is fold-median IMPUTED, not measured."
+      ]
+    },
+    {
+      "vin_label": "VIN4_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.1178,
+      "prob_decision_oof": 0.3478,
+      "prob_production_bridge": 0.1391,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.6474389115556433,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.9139072190298582,
+          "imputed": false,
+          "z": -0.5229554763873395,
+          "contribution": -0.46343579834603227,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.91x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.3252705739773915,
+          "imputed": false,
+          "z": 0.638693794200405,
+          "contribution": -0.1726858093392465,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.33 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.122604341607353,
+          "imputed": false,
+          "z": -0.16018402818557523,
+          "contribution": -0.02256372563430654,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.12 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.25 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.91 -> 1.16), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.40356146193831005,
+          "delta_raw": 0.24750340924012443,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.1614106282699825,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.3227281476849364,
+          "delta_raw": -1.1007853753247632,
+          "unit": "V",
+          "new_raw_value": -0.7755148013473716,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.8640719337371782,
+          "delta_raw": -0.056226969751976885,
+          "unit": "V/wk",
+          "new_raw_value": -0.056226969751976885,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.5388845334442314,
+          "delta_raw": 2.3796725487717056,
+          "unit": "V",
+          "new_raw_value": 2.5022768903790586,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN17_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0961,
+      "prob_decision_oof": 0.3342,
+      "prob_production_bridge": 0.1519,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.616948067627434,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.753685240188456,
+          "imputed": false,
+          "z": -0.7842020435130214,
+          "contribution": -0.6949488369653593,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.75x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.4333653083214379,
+          "imputed": false,
+          "z": -0.27289992593273726,
+          "contribution": 0.07378487939954571,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -0.43 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.2259621786530017,
+          "imputed": false,
+          "z": -0.049911035365241885,
+          "contribution": -0.007030531825562509,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.23 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.23 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.75 -> 0.98), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.3691546382340635,
+          "delta_raw": 0.22640177548395893,
+          "unit": "x (ratio)",
+          "new_raw_value": 0.9800870156724149,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.2099550549137612,
+          "delta_raw": -1.0069346687605136,
+          "unit": "V",
+          "new_raw_value": -1.4402999770819516,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -0.7904029303861418,
+          "delta_raw": -0.05143317347026949,
+          "unit": "V/wk",
+          "new_raw_value": -0.05143317347026949,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 2.3224244380523498,
+          "delta_raw": 2.1767865411084193,
+          "unit": "V",
+          "new_raw_value": 2.402748719761421,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": [
+        "Battery-replacement step detected (E5): rest-VSI baseline re-anchored post-step; rest_vsi_p05_delta90 is step-aware."
+      ]
+    },
+    {
+      "vin_label": "VIN12_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0909,
+      "prob_decision_oof": 0.3314,
+      "prob_production_bridge": 0.1114,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.7230284193787581,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.8830002538210785,
+          "imputed": false,
+          "z": -0.5733501764119788,
+          "contribution": -0.5080948737221342,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.88x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.4638175910015079,
+          "imputed": false,
+          "z": 0.8051749660105917,
+          "contribution": -0.21769788892235825,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.46 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.21630359032257424,
+          "imputed": true,
+          "z": -0.06021583151868095,
+          "contribution": -0.008482078498207583,
+          "direction": "protective",
+          "gloss": "crank dip depth +0.22 V vs own baseline -- dips not deepening (protective) [IMPUTED fleet median -- no crank events observable for this truck]"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.30 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.88 -> 1.18), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.4888590311261047,
+          "delta_raw": 0.2998162318582111,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.1828164856792895,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.6023026520290757,
+          "delta_raw": -1.333449605109493,
+          "unit": "V",
+          "new_raw_value": -0.8696320141079852,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -1.0467039303534582,
+          "delta_raw": -0.06811121613071665,
+          "unit": "V/wk",
+          "new_raw_value": -0.06811121613071665,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 3.075508318359515,
+          "delta_raw": 2.882644965657683,
+          "unit": "V",
+          "new_raw_value": 3.0989485559802574,
+          "imputed_feature": true
+        }
+      ],
+      "caveats": [
+        "SMA-dead telematics config: no crank events observable; dip_depth_last90_delta is fold-median IMPUTED, not measured.",
+        "Battery-replacement step detected (E5): rest-VSI baseline re-anchored post-step; rest_vsi_p05_delta90 is step-aware."
+      ]
+    },
+    {
+      "vin_label": "VIN9_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0822,
+      "prob_decision_oof": 0.332,
+      "prob_production_bridge": 0.0499,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.9812319124172041,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.9788433201612,
+          "imputed": false,
+          "z": -0.41707528675442085,
+          "contribution": -0.3696062613641553,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.98x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -1.8663667796494128,
+          "imputed": false,
+          "z": -2.2822272562895964,
+          "contribution": -0.32147742961237313,
+          "direction": "protective",
+          "gloss": "crank dip depth -1.87 V vs own baseline -- dips not deepening (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.3476851251390229,
+          "imputed": false,
+          "z": 0.6656276165456254,
+          "contribution": -0.17996799832012844,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.35 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.019090799851851,
+          "imputed": false,
+          "z": -0.16016431494248012,
+          "contribution": 0.06629036511474692,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range widening at +0.019 V/wk over the last 12 weeks [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.48 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.98 -> 1.46), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.7802239433506324,
+          "delta_raw": 0.478509729404178,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.457353049565378,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -2.5572911903202935,
+          "delta_raw": -2.1281990163121205,
+          "unit": "V",
+          "new_raw_value": -1.7805138911730976,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -1.6705500278470187,
+          "delta_raw": -0.10870618778076041,
+          "unit": "V/wk",
+          "new_raw_value": -0.08961538792890941,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 4.908542289646569,
+          "delta_raw": 4.600730433892941,
+          "unit": "V",
+          "new_raw_value": 2.734363654243528,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN6_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0701,
+      "prob_decision_oof": 0.316,
+      "prob_production_bridge": 0.0971,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.768511792158052,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.6142268895650203,
+          "imputed": false,
+          "z": -1.0115929147332923,
+          "contribution": -0.8964594333713007,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.61x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": -0.4300001584566573,
+          "imputed": false,
+          "z": -0.26885628713892584,
+          "contribution": 0.07269158705174845,
+          "direction": "toward failure",
+          "gloss": "engine-off rest-voltage floor moved -0.43 V vs own baseline -- battery floor sagging, battery-cascade pathway"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.5655833178411838,
+          "imputed": false,
+          "z": 0.3124324551123242,
+          "contribution": 0.044009632397558264,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +0.57 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.33 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.61 -> 0.95), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.540183894169461,
+          "delta_raw": 0.33129366412094535,
+          "unit": "x (ratio)",
+          "new_raw_value": 0.9455205536859657,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -1.7705269435594189,
+          "delta_raw": -1.4734472608750218,
+          "unit": "V",
+          "new_raw_value": -1.903447419331679,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -1.1565964197048026,
+          "delta_raw": -0.0752621504840675,
+          "unit": "V/wk",
+          "new_raw_value": -0.0752621504840675,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 3.3984031268381307,
+          "delta_raw": 3.1852912269412066,
+          "unit": "V",
+          "new_raw_value": 3.7508745447823904,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN1_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0656,
+      "prob_decision_oof": 0.3125,
+      "prob_production_bridge": 0.0508,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.976016879619889,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.7548185748614574,
+          "imputed": false,
+          "z": -0.7823541085738379,
+          "contribution": -0.6933112229762141,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.75x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.546353152674488,
+          "imputed": false,
+          "z": 0.9043515294506973,
+          "contribution": -0.24451259305860348,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.55 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.0562269037420097,
+          "imputed": false,
+          "z": -0.35097997746373166,
+          "contribution": -0.04943948534901364,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.06 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.47 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.75 -> 1.23), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.7743391369316446,
+          "delta_raw": 0.4749005898088806,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.229719164670338,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -2.5380029286099566,
+          "delta_raw": -2.112147164354984,
+          "unit": "V",
+          "new_raw_value": -1.565794011680496,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -1.6579499742202404,
+          "delta_raw": -0.10788627591175433,
+          "unit": "V/wk",
+          "new_raw_value": -0.10788627591175433,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 4.871519814983798,
+          "delta_raw": 4.5660296172618375,
+          "unit": "V",
+          "new_raw_value": 4.509802713519828,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN3_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0563,
+      "prob_decision_oof": 0.3106,
+      "prob_production_bridge": 0.064,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.902759537621873,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.8917425599602419,
+          "imputed": false,
+          "z": -0.5590955935879897,
+          "contribution": -0.49546266262691646,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.89x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.5343588478544845,
+          "imputed": false,
+          "z": 0.8899389064698996,
+          "contribution": -0.24061580325613433,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.53 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.91118582414121,
+          "imputed": false,
+          "z": -1.26313992184436,
+          "contribution": -0.17792749350276427,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.91 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.42 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.89 -> 1.32), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.6916732567381648,
+          "delta_raw": 0.42420177660344743,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.3159443365636894,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -2.267054146583339,
+          "delta_raw": -1.8866613324862276,
+          "unit": "V",
+          "new_raw_value": -1.352302484631743,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -1.4809527292162443,
+          "delta_raw": -0.09636869461735946,
+          "unit": "V/wk",
+          "new_raw_value": -0.09636869461735946,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 4.351452503157917,
+          "delta_raw": 4.078575426587542,
+          "unit": "V",
+          "new_raw_value": 3.167389602446332,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": [
+        "Battery-replacement step detected (E5): rest-VSI baseline re-anchored post-step; rest_vsi_p05_delta90 is step-aware."
+      ]
+    },
+    {
+      "vin_label": "VIN8_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0484,
+      "prob_decision_oof": 0.2941,
+      "prob_production_bridge": 0.0664,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -0.8912171391245195,
+      "drivers": [
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 1.2352707909043374,
+          "imputed": false,
+          "z": 1.7321702595591026,
+          "contribution": -0.46833275334984714,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +1.24 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.987029064965924,
+          "imputed": false,
+          "z": -0.40372819327158566,
+          "contribution": -0.3577782545775213,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.99x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": -0.2353063957574868,
+          "imputed": false,
+          "z": -0.5420407823504475,
+          "contribution": -0.07635255296109311,
+          "direction": "protective",
+          "gloss": "crank dip depth -0.24 V vs own baseline -- dips not deepening (protective)"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.42 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.99 -> 1.40), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.6786484525983495,
+          "delta_raw": 0.416213691185663,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.403242756151587,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -2.2243635611863355,
+          "delta_raw": -1.8511338719484574,
+          "unit": "V",
+          "new_raw_value": -0.6158630810441199,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -1.4530651116880904,
+          "delta_raw": -0.09455398895919934,
+          "unit": "V/wk",
+          "new_raw_value": -0.09455398895919934,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 4.26951089846928,
+          "delta_raw": 4.001772332665297,
+          "unit": "V",
+          "new_raw_value": 3.76646593690781,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN16_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0433,
+      "prob_decision_oof": 0.2897,
+      "prob_production_bridge": 0.0407,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -1.0450930065176052,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.5517525066177302,
+          "imputed": false,
+          "z": -1.1134592017202387,
+          "contribution": -0.9867319062029563,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.55x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.1054627453839351,
+          "imputed": false,
+          "z": 0.3745678269778733,
+          "contribution": -0.1012731749415139,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.11 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.4834465054801962,
+          "imputed": false,
+          "z": 0.2248002795689452,
+          "contribution": 0.031665652862922916,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +0.48 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.52 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.55 -> 1.07), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 0.8522868029896195,
+          "delta_raw": 0.5227057320516466,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.0744582386693768,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -2.7934871154448975,
+          "delta_raw": -2.3247632313728834,
+          "unit": "V",
+          "new_raw_value": -2.2193004859889482,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -1.8248449750895501,
+          "delta_raw": -0.1187464830302153,
+          "unit": "V/wk",
+          "new_raw_value": -0.1187464830302153,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 5.361903913659008,
+          "delta_raw": 5.025662011960966,
+          "unit": "V",
+          "new_raw_value": 5.509108517441162,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "vin_label": "VIN14_NF_SM",
+      "failed": 0,
+      "tier_shipped_oof": "GREEN",
+      "prob_recal_oof": 0.0412,
+      "prob_decision_oof": 0.2866,
+      "prob_production_bridge": 0.0217,
+      "tier_production": "GREEN",
+      "archetype": "n/a",
+      "archetype_full": "n/a",
+      "decision_value_production": -1.237961678835378,
+      "drivers": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "raw_value": 0.451067305585862,
+          "imputed": false,
+          "z": -1.2776293319367165,
+          "contribution": -1.1322171698568229,
+          "direction": "protective",
+          "gloss": "within-week voltage noise at 0.45x own baseline -- quiet, fleet-typical electrical behaviour (protective)"
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "raw_value": 0.4257408071447308,
+          "imputed": false,
+          "z": 0.7594210571109433,
+          "contribution": -0.20532724925039866,
+          "direction": "protective",
+          "gloss": "rest-voltage floor +0.43 V vs own baseline -- battery floor stable/recovering (protective)"
+        },
+        {
+          "feature": "vsi_range_trend",
+          "raw_value": 0.0,
+          "imputed": false,
+          "z": -0.45354353166611217,
+          "contribution": 0.18771700999923618,
+          "direction": "toward failure",
+          "gloss": "weekly voltage range trend +0.000 V/wk -- envelope flat [model uses this term as a statistical suppressor for the correlated noise ratio (r=+0.82); its standalone physics direction is widening = risk -- see global coefficient table]"
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "raw_value": 0.8605329886028663,
+          "imputed": false,
+          "z": 0.6271157327035322,
+          "contribution": 0.08833631850790133,
+          "direction": "toward failure",
+          "gloss": "crank voltage dips +0.86 V deeper than own baseline in the last 90 d -- heavier cranking load / battery-cascade signature"
+        }
+      ],
+      "counterfactual": "would enter AMBER if within-week noise ratio rose by 0.66 x (ratio) (vsi_withinwk_std_ratio_30d_w: 0.45 -> 1.11), all else equal",
+      "counterfactual_options_all": [
+        {
+          "feature": "vsi_withinwk_std_ratio_30d_w",
+          "delta_z": 1.0699258562783436,
+          "delta_raw": 0.6561833129237928,
+          "unit": "x (ratio)",
+          "new_raw_value": 1.107250618509655,
+          "imputed_feature": false
+        },
+        {
+          "feature": "rest_vsi_p05_delta90",
+          "delta_z": -3.5068290198919168,
+          "delta_raw": -2.9184123023448203,
+          "unit": "V",
+          "new_raw_value": -2.4926714952000895,
+          "imputed_feature": false
+        },
+        {
+          "feature": "vsi_range_trend",
+          "delta_z": -2.29083545081209,
+          "delta_raw": -0.14906945888459608,
+          "unit": "V/wk",
+          "new_raw_value": -0.14906945888459608,
+          "imputed_feature": false
+        },
+        {
+          "feature": "dip_depth_last90_delta",
+          "delta_z": 6.731114005262486,
+          "delta_raw": 6.309009728475606,
+          "unit": "V",
+          "new_raw_value": 7.169542717078472,
+          "imputed_feature": false
+        }
+      ],
+      "caveats": []
+    }
+  ]
+}

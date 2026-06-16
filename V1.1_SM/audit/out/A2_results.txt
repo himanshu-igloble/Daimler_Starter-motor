@@ -1,0 +1,160 @@
+==============================================================================
+CHECK 6 — RAW vs V1_SM_data_quality.csv (rows, t_start, t_end, active_days)
+==============================================================================
+  VIN10_F_SM    rows   1837988/1837988   t_start 2024-07-01T16:02:28 t_end 2025-12-29T23:57:08 active 416/416 [PASS]
+  VIN10_NF_SM   rows   3168806/3168806   t_start 2024-01-01T05:29:59 t_end 2025-02-26T08:42:00 active 421/421 [PASS]
+  VIN11_F_SM    rows   2702394/2702394   t_start 2024-03-27T12:47:27 t_end 2025-11-22T23:45:55 active 445/445 [PASS]
+  VIN11_NF_SM   rows   4678423/4678423   t_start 2023-12-31T20:14:05 t_end 2025-05-27T07:29:01 active 490/490 [PASS]
+  VIN12_F_SM    rows   2490690/2490690   t_start 2024-12-27T06:33:47 t_end 2025-12-07T23:54:55 active 344/344 [PASS]
+  VIN12_NF_SM   rows   3192514/3192514   t_start 2024-01-01T05:30:01 t_end 2026-02-18T01:26:19 active 723/723 [PASS]
+  VIN13_F_SM    rows   1629920/1629920   t_start 2024-07-31T00:11:46 t_end 2025-11-06T23:55:54 active 460/460 [PASS]
+  VIN13_NF_SM   rows   3868675/3868675   t_start 2024-01-01T05:40:28 t_end 2025-07-28T07:15:38 active 524/524 [PASS]
+  VIN14_F_SM    rows   2883142/2883142   t_start 2024-07-03T17:01:38 t_end 2025-11-17T23:59:55 active 457/457 [PASS]
+  VIN14_NF_SM   rows   3422746/3422746   t_start 2024-01-19T11:06:19 t_end 2026-02-18T01:26:57 active 719/719 [PASS]
+  VIN15_NF_SM   rows   3191966/3191966   t_start 2024-01-30T01:23:27 t_end 2026-02-18T01:29:55 active 721/721 [PASS]
+  VIN16_NF_SM   rows   5315087/5315087   t_start 2024-01-12T12:31:08 t_end 2026-02-16T11:31:33 active 575/575 [PASS]
+  VIN17_NF_SM   rows   3374585/3374585   t_start 2024-07-17T20:09:55 t_end 2026-02-18T01:26:56 active 458/458 [PASS]
+  VIN18_NF_SM   rows   3953484/3953484   t_start 2024-03-22T22:00:17 t_end 2026-02-11T05:37:55 active 596/596 [PASS]
+  VIN19_NF_SM   rows   3601637/3601637   t_start 2024-05-03T10:45:52 t_end 2026-02-18T00:43:54 active 602/602 [PASS]
+  VIN1_F_SM     rows   1303473/1303473   t_start 2024-09-30T16:21:41 t_end 2025-09-15T08:10:22 active 305/305 [PASS]
+  VIN1_NF_SM    rows   4500188/4500188   t_start 2024-02-02T18:12:43 t_end 2026-02-18T01:17:56 active 642/642 [PASS]
+  VIN20_NF_SM   rows   4372039/4372039   t_start 2024-01-01T05:29:51 t_end 2025-09-26T11:40:04 active 626/626 [PASS]
+  VIN2_F_SM     rows    843430/843430    t_start 2025-06-27T09:26:53 t_end 2025-12-13T23:58:46 active 163/163 [PASS]
+  VIN2_NF_SM    rows   3339979/3339979   t_start 2024-01-22T15:37:37 t_end 2026-02-18T01:31:52 active 687/687 [PASS]
+  VIN3_F_SM     rows   1165335/1165335   t_start 2025-04-08T00:11:46 t_end 2025-12-16T23:50:54 active 248/248 [PASS]
+  VIN3_NF_SM    rows   3272138/3272138   t_start 2024-03-18T14:56:12 t_end 2026-02-18T01:27:54 active 693/693 [PASS]
+  VIN4_F_SM     rows   1227142/1227142   t_start 2025-03-05T16:57:15 t_end 2025-08-02T06:55:49 active 151/151 [PASS]
+  VIN4_NF_SM    rows   3765513/3765513   t_start 2024-03-22T21:47:16 t_end 2026-02-13T01:08:56 active 588/588 [PASS]
+  VIN5_F_SM     rows   1275868/1275868   t_start 2024-04-30T00:13:45 t_end 2025-10-27T16:20:21 active 219/219 [PASS]
+  VIN5_NF_SM    rows   4254893/4254893   t_start 2024-04-03T08:20:43 t_end 2026-02-17T09:52:05 active 622/622 [PASS]
+  VIN6_F_SM     rows   2219533/2219533   t_start 2024-10-03T17:33:31 t_end 2025-11-04T23:53:54 active 396/396 [PASS]
+  VIN6_NF_SM    rows   3573023/3573023   t_start 2024-02-28T13:52:19 t_end 2026-02-18T01:29:56 active 602/602 [PASS]
+  VIN7_F_SM     rows   2733480/2733480   t_start 2024-04-30T15:26:34 t_end 2025-11-08T23:59:54 active 543/543 [PASS]
+  VIN7_NF_SM    rows   3991540/3991540   t_start 2024-02-22T09:09:19 t_end 2026-02-18T01:21:57 active 706/706 [PASS]
+  VIN8_F_SM     rows   4802641/4802641   t_start 2024-01-31T00:03:34 t_end 2025-10-26T23:09:22 active 547/547 [PASS]
+  VIN8_NF_SM    rows   3349684/3349684   t_start 2024-03-01T20:18:06 t_end 2026-02-18T01:31:52 active 692/692 [PASS]
+  VIN9_F_SM     rows   3810537/3810537   t_start 2024-01-31T00:25:33 t_end 2025-06-29T19:34:22 active 501/501 [PASS]
+  VIN9_NF_SM    rows   3332668/3332668   t_start 2024-02-27T18:11:45 t_end 2026-02-10T23:48:40 active 640/640 [PASS]
+CHECK 6 verdict: 34/34 agree -> PASS
+
+==============================================================================
+CHECK 1a — daily cache active-date sets == raw active-date sets
+==============================================================================
+CHECK 1a verdict: 34/34 VINs cache==raw active days & per-day row counts -> PASS
+
+==============================================================================
+CHECK 1b — gap inventory (>= 7 consecutive zero-telemetry days)
+==============================================================================
+  VIN1_F_SM: terminal silent gap 72d (expected 72) [PASS]
+  VIN4_F_SM: terminal silent gap 97d (expected 97) [PASS]
+  VIN5_F_SM: terminal silent gap 32d (expected 32) [PASS]
+  VIN8_F_SM: terminal silent gap 37d (expected 37) [PASS]
+  VIN9_F_SM: terminal silent gap 142d (expected 142) [PASS]
+  wrote D:\Daimler-starter_motor_alternator_battery\STARTER MOTOR\V1.1\results\V1_1_SM_data_gap_inventory.csv (63 gaps)
+
+  Full inventory:
+    VIN10_F_SM    2024-09-21 -> 2025-01-22  124d  mid_history
+    VIN11_F_SM    2024-09-21 -> 2025-02-28  161d  mid_history
+    VIN11_NF_SM   2024-10-07 -> 2024-10-18   12d  mid_history
+    VIN12_NF_SM   2024-01-04 -> 2024-01-30   27d  mid_history
+    VIN12_NF_SM   2024-02-09 -> 2024-03-03   24d  mid_history
+    VIN13_NF_SM   2024-02-17 -> 2024-02-23    7d  mid_history
+    VIN13_NF_SM   2024-11-20 -> 2024-11-30   11d  mid_history
+    VIN13_NF_SM   2024-12-18 -> 2024-12-24    7d  mid_history
+    VIN14_F_SM    2025-06-06 -> 2025-07-10   35d  mid_history
+    VIN14_NF_SM   2024-01-24 -> 2024-02-14   22d  mid_history
+    VIN14_NF_SM   2024-03-20 -> 2024-03-27    8d  mid_history
+    VIN15_NF_SM   2024-02-02 -> 2024-02-15   14d  mid_history
+    VIN16_NF_SM   2024-02-16 -> 2024-02-27   12d  mid_history
+    VIN16_NF_SM   2024-03-02 -> 2024-04-09   39d  mid_history
+    VIN16_NF_SM   2024-04-11 -> 2024-05-29   49d  mid_history
+    VIN16_NF_SM   2024-06-01 -> 2024-06-30   30d  mid_history
+    VIN16_NF_SM   2024-07-03 -> 2024-07-12   10d  mid_history
+    VIN16_NF_SM   2024-07-19 -> 2024-07-29   11d  mid_history
+    VIN16_NF_SM   2024-08-01 -> 2024-08-14   14d  mid_history
+    VIN17_NF_SM   2024-07-25 -> 2024-09-29   67d  mid_history
+    VIN17_NF_SM   2024-10-12 -> 2024-12-02   52d  mid_history
+    VIN18_NF_SM   2025-08-18 -> 2025-08-30   13d  mid_history
+    VIN18_NF_SM   2025-09-15 -> 2025-10-13   29d  mid_history
+    VIN18_NF_SM   2026-01-21 -> 2026-02-02   13d  mid_history
+    VIN19_NF_SM   2024-05-08 -> 2024-05-26   19d  mid_history
+    VIN19_NF_SM   2024-06-08 -> 2024-06-19   12d  mid_history
+    VIN19_NF_SM   2024-06-27 -> 2024-07-05    9d  mid_history
+    VIN19_NF_SM   2024-08-23 -> 2024-08-31    9d  mid_history
+    VIN1_F_SM     2025-07-31 -> 2025-09-02   34d  mid_history
+    VIN1_F_SM     2025-09-16 -> 2025-11-26   72d  terminal_silent
+    VIN1_NF_SM    2024-02-07 -> 2024-02-26   20d  mid_history
+    VIN1_NF_SM    2024-03-04 -> 2024-03-29   26d  mid_history
+    VIN1_NF_SM    2024-05-11 -> 2024-05-22   12d  mid_history
+    VIN1_NF_SM    2024-06-25 -> 2024-07-25   31d  mid_history
+    VIN2_NF_SM    2024-01-25 -> 2024-02-15   22d  mid_history
+    VIN2_NF_SM    2024-03-01 -> 2024-03-18   18d  mid_history
+    VIN2_NF_SM    2024-04-05 -> 2024-04-13    9d  mid_history
+    VIN2_NF_SM    2025-01-20 -> 2025-02-05   17d  mid_history
+    VIN4_F_SM     2025-08-03 -> 2025-11-07   97d  terminal_silent
+    VIN4_NF_SM    2024-04-01 -> 2024-04-24   24d  mid_history
+    VIN4_NF_SM    2024-04-27 -> 2024-05-29   33d  mid_history
+    VIN4_NF_SM    2024-07-27 -> 2024-08-19   24d  mid_history
+    VIN4_NF_SM    2025-06-19 -> 2025-06-28   10d  mid_history
+    VIN5_F_SM     2024-12-04 -> 2025-10-26  327d  mid_history
+    VIN5_F_SM     2025-10-28 -> 2025-11-28   32d  terminal_silent
+    VIN5_NF_SM    2024-04-10 -> 2024-04-27   18d  mid_history
+    VIN5_NF_SM    2024-11-20 -> 2024-11-28    9d  mid_history
+    VIN5_NF_SM    2024-12-24 -> 2025-01-13   21d  mid_history
+    VIN6_NF_SM    2024-03-02 -> 2024-03-12   11d  mid_history
+    VIN6_NF_SM    2024-03-24 -> 2024-04-10   18d  mid_history
+    VIN6_NF_SM    2024-11-29 -> 2024-12-05    7d  mid_history
+    VIN6_NF_SM    2025-08-23 -> 2025-10-25   64d  mid_history
+    VIN6_NF_SM    2025-11-20 -> 2025-11-26    7d  mid_history
+    VIN7_F_SM     2024-05-10 -> 2024-05-19   10d  mid_history
+    VIN7_NF_SM    2024-03-17 -> 2024-03-29   13d  mid_history
+    VIN8_F_SM     2024-02-25 -> 2024-04-03   39d  mid_history
+    VIN8_F_SM     2024-05-04 -> 2024-06-06   34d  mid_history
+    VIN8_F_SM     2025-10-27 -> 2025-12-02   37d  terminal_silent
+    VIN8_NF_SM    2024-03-06 -> 2024-03-18   13d  mid_history
+    VIN9_F_SM     2025-06-30 -> 2025-11-18  142d  terminal_silent
+    VIN9_NF_SM    2024-03-08 -> 2024-03-21   14d  mid_history
+    VIN9_NF_SM    2025-01-08 -> 2025-01-15    8d  mid_history
+    VIN9_NF_SM    2025-02-08 -> 2025-02-28   21d  mid_history
+
+  VINs with >= 7d mid-history gaps: 24/34 ; total mid-history gaps: 58
+  Largest mid-history gaps fleet-wide:
+    VIN5_F_SM     2024-12-04 -> 2025-10-26  327d
+    VIN11_F_SM    2024-09-21 -> 2025-02-28  161d
+    VIN10_F_SM    2024-09-21 -> 2025-01-22  124d
+    VIN17_NF_SM   2024-07-25 -> 2024-09-29  67d
+    VIN6_NF_SM    2025-08-23 -> 2025-10-25  64d
+    VIN17_NF_SM   2024-10-12 -> 2024-12-02  52d
+    VIN16_NF_SM   2024-04-11 -> 2024-05-29  49d
+    VIN16_NF_SM   2024-03-02 -> 2024-04-09  39d
+
+  VIN1_F_SM 2025-08-01..2025-11-30 detail (raw rows per active day):
+    2025-09-03  n_rows=     1  drive_rows=     0
+    2025-09-10  n_rows=   373  drive_rows=   115
+    2025-09-15  n_rows=    14  drive_rows=     0
+
+==============================================================================
+CHECK 4 — cache vsi_drive_mean/p05/p95 vs raw recompute (3 VINs x 5 days)
+==============================================================================
+  VIN1_F_SM     2024-12-23  mean 27.98108/27.98108 p05 27.800/27.800 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+  VIN1_F_SM     2025-02-12  mean 28.09199/28.09199 p05 28.000/28.000 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+  VIN1_F_SM     2025-02-17  mean 28.10254/28.10254 p05 28.000/28.000 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+  VIN1_F_SM     2025-06-04  mean 27.97104/27.97104 p05 27.800/27.800 p95 28.000/28.000 maxdiff=0.00e+00 [PASS]
+  VIN1_F_SM     2025-07-25  mean 28.12821/28.12821 p05 28.000/28.000 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+  VIN6_F_SM     2024-11-27  mean 28.00524/28.00524 p05 27.800/27.800 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+  VIN6_F_SM     2025-05-23  mean 22.87585/22.87585 p05 21.800/21.800 p95 24.000/24.000 maxdiff=0.00e+00 [PASS]
+  VIN6_F_SM     2025-05-27  mean 27.95425/27.95425 p05 27.600/27.600 p95 28.390/28.390 maxdiff=0.00e+00 [PASS]
+  VIN6_F_SM     2025-06-14  mean 28.21530/28.21530 p05 27.600/27.600 p95 29.000/29.000 maxdiff=0.00e+00 [PASS]
+  VIN6_F_SM     2025-06-23  mean 28.12777/28.12777 p05 27.390/27.390 p95 29.000/29.000 maxdiff=0.00e+00 [PASS]
+  VIN12_NF_SM   2024-04-05  mean 27.97285/27.97285 p05 27.800/27.800 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+  VIN12_NF_SM   2024-06-22  mean 27.90178/27.90178 p05 27.800/27.800 p95 28.000/28.000 maxdiff=0.00e+00 [PASS]
+  VIN12_NF_SM   2024-08-31  mean 27.92898/27.92898 p05 27.800/27.800 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+  VIN12_NF_SM   2025-11-09  mean 28.28182/28.28182 p05 28.200/28.200 p95 28.400/28.400 maxdiff=0.00e+00 [PASS]
+  VIN12_NF_SM   2025-12-26  mean 28.03430/28.03430 p05 27.800/27.800 p95 28.200/28.200 maxdiff=0.00e+00 [PASS]
+CHECK 4 verdict: 15/15 -> PASS
+
+==============================================================================
+CHECK 5 — red tick dates == failed (success=False, artifact=False) cranks
+==============================================================================
+  VIN6_F_SM     independent=10 dates, script ticks=10 dates, sets equal: True [PASS]
+  VIN11_F_SM    independent=5 dates, script ticks=5 dates, sets equal: True [PASS]

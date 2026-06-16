@@ -1,0 +1,11 @@
+variant,k,auroc,youden_misses,youden_false_alarms,vin8F_prob,vin8NF_prob,vin9NF_prob
+A_baseline_4winners,4,0.9214,1,2,0.3031,0.4559,0.5407
+B_drop_domfreq_3feat,3,0.8643,4,2,0.3779,0.5515,0.4039
+C_swap_domfreq_to_withinwk,4,0.8679,4,2,0.4336,0.4834,0.3885
+D_swap_windowed_withinwk,4,0.9,1,5,0.4359,0.5035,0.3858
+E_add_withinwk_5feat,5,0.9679,1,1,0.3637,0.3489,0.5361
+F_C_plus_persistence_5feat,5,0.8464,4,2,0.4245,0.5069,0.4149
+G_all_windowed_4feat,4,0.8607,1,6,0.4245,0.5016,0.3976
+H_D_plus_persistence_5feat,5,0.8786,5,1,0.4261,0.5191,0.4112
+I_D_swap_fcr30,4,0.9071,2,3,0.4411,0.3865,0.391
+J_honest_3feat,3,0.9143,1,5,0.4473,0.5042,0.3875
