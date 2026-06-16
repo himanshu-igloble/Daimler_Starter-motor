@@ -1,0 +1,75 @@
+[19:51:21] SM V2 Refit Automation Harness  —  2026-06-12T19:51:21.448528+00:00
+[19:51:21] Mode: self-test  |  perm-n=20
+[19:51:21] 
+======================================================================
+S0: Trigger check
+======================================================================
+[19:51:21]   Baseline failure label count (probe1): 14
+[19:51:21]   --self-test mode: S0 skipped (no new labels file).
+[19:51:21] 
+======================================================================
+S1: Feature build
+======================================================================
+[19:51:21]   Fleet: 34 VINs (14 failed / 20 non-failed)
+[19:51:21]   Loading 34 weekly parquet files...
+[19:51:22]   Battery-replacement steps (E5): {'VIN12_NF_SM': '2024-04-29', 'VIN17_NF_SM': '2025-09-29', 'VIN18_NF_SM': '2024-05-27', 'VIN3_NF_SM': '2024-06-17', 'VIN5_NF_SM': '2024-06-10', 'VIN8_F_SM': '2024-06-24'}
+[19:51:22]   SMA-dead cohort (7): ['VIN10_NF_SM', 'VIN11_NF_SM', 'VIN12_NF_SM', 'VIN13_NF_SM', 'VIN20_NF_SM', 'VIN8_F_SM', 'VIN9_F_SM']
+[19:51:22]   Building production feature matrix...
+[19:51:24]   Building L40-control feature matrix...
+[19:51:25]   S1 self-test: max|diff| across all features = 4.44e-16
+[19:51:25]   [PASS] S1 matrix reproduction gate PASSED (max|diff| <= 1e-9, NaN pattern identical).
+[19:51:25]   Running admissibility audit...
+[19:51:26]   Admissible pool (10/10): ['vsi_std_ratio_30d_L40', 'vsi_withinwk_std_ratio_30d_w', 'vsi_range_trend', 'vsi_trend_persistence', 'failed_crank_rate_last90', 'retry_burst_rate_last90', 'extended_crank_tail_rate_last90', 'first_crank_fail_rate_last90', 'rest_vsi_p05_delta90', 'dip_depth_last90_delta']
+[19:51:26] 
+  S1 duration: 4.7s
+[19:51:26] 
+======================================================================
+S2: Nested validation protocol
+======================================================================
+[19:51:26]   Pool: 10 admissible features
+[19:54:05]   Nested AUROC = 0.9321  (runtime 159.1s)
+[19:54:05]   Per-fold-Youden: recall 13/14, spec 15/20, F1 0.812
+[19:54:05]   Modal winner subset (14/34 folds): ['dip_depth_last90_delta', 'rest_vsi_p05_delta90', 'vsi_range_trend', 'vsi_withinwk_std_ratio_30d_w']
+[19:54:05]   Feature frequency: {'vsi_withinwk_std_ratio_30d_w': 34, 'vsi_range_trend': 34, 'rest_vsi_p05_delta90': 28, 'dip_depth_last90_delta': 20}
+[19:54:05]   [PASS] S2 nested AUROC = 0.9321 (within 0.9321 ± 0.002)
+[19:54:05]   [PASS] S2 modal subset = ['dip_depth_last90_delta', 'rest_vsi_p05_delta90', 'vsi_range_trend', 'vsi_withinwk_std_ratio_30d_w']
+[19:54:06]   Bootstrap 95% CI (N=200): [0.811, 0.986]
+[19:54:06] 
+  [perm] Full-pipeline permutation test: N=20
+[19:54:06]   NOTE: permutation count does NOT affect the AUROC point estimate.
+[19:54:06]   NOTE: Using N=20 for plumbing speed (self-test). Production refits use >=200.
+[19:54:29]     perm 5/20  (24s elapsed, 71s remaining)
+[19:54:52]     perm 10/20  (46s elapsed, 46s remaining)
+[19:55:33]     perm 15/20  (88s elapsed, 29s remaining)
+[19:56:43]     perm 20/20  (158s elapsed, 0s remaining)
+[19:56:43]   Permutation p = 0.0476  (N=20, null mean 0.424, null p95 0.674, runtime 158s)
+[19:56:43] 
+  S2 duration: 317.7s
+[19:56:43] 
+======================================================================
+S3: Gates G1-G6
+======================================================================
+[19:56:45]   [PASS] S3 G1 drop = 0.0000 <= 0.001
+[19:56:45]   [PASS] S3 G6 zero banned tokens
+[19:56:45]   [PASS] S3 G3 calibration slope = 0.860 (within 0.86 ± 0.05)
+[19:56:45]   Gate G1_fixed_L40_control: True
+[19:56:45]   Gate G2_oof_proxy_audit: report-only
+[19:56:45]   Gate G3_calibration: report-only
+[19:56:45]   Gate G4_winner_stability: False
+[19:56:45]   Gate G5_jackknife: report-only
+[19:56:45]   Gate G6_token_scan: True
+[19:56:45] 
+  S3 duration: 1.3s
+[19:56:45] 
+======================================================================
+S4: Comparison report vs baseline
+======================================================================
+[19:56:45]   AUROC delta vs baseline: +0.0000
+[19:56:45]   Subset changed: False
+[19:56:45]   [PASS] S4 delta ~0 (self-test identity check).
+[19:56:45] 
+  S4 duration: 0.0s
+[19:56:45] 
+======================================================================
+S5: Artifact versioning
+======================================================================

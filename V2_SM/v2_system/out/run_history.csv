@@ -1,0 +1,8 @@
+run_timestamp,config_version,overall_ok,gates_pass,snapshot_rows,p0_alerts,p1_alerts,p2_alerts,stage_statuses
+2026-06-12T19:31:26,2.1.0-B,True,True,34,9,4,3,0:OK|1:OK|2:OK|3:SKIP|4:OK|5:OK
+2026-06-12T19:32:15,2.1.0-B,True,True,34,9,4,3,0:OK|1:OK|2:OK|3:SKIP|4:OK|5:OK
+2026-06-12T19:33:26,2.1.0-B,True,True,34,9,4,3,0:OK|1:OK|2:OK|3:SKIP|4:OK|5:OK
+2026-06-12T19:37:26,2.1.0-B,True,True,34,9,4,3,0:OK|1:OK|2:OK|3:OK|4:OK|5:OK
+2026-06-12T20:00:38,2.1.0-B,False,False,34,9,4,3,2,0:OK|V:OK|1:OK|2:FAIL
+2026-06-12T20:01:23,2.1.0-B,True,True,34,9,4,3,0,0:OK|V:OK|1:OK|2:OK|3:OK|4:OK|5:OK
+2026-06-12T20:14:42,2.1.0-B,True,True,34,9,4,3,0,0:OK|V:OK|1:OK|2:OK|3:OK|4:OK|5:OK|5b:OK

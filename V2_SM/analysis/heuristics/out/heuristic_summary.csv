@@ -1,0 +1,8 @@
+heuristic,recall_n_of_14,recall_frac,med_lead_d,nf_ever_fire_n,nf_ever_fire_frac,nf_eps_per_truck_year,complexity,explainability,priority
+H4_multichannel,14,1.0,175.0,20,1.0,1.0,Medium,High — multi-source agreement,1
+H1_momentum,13,0.929,126.0,19,0.95,0.75,Low,High — rising prob slope,2
+BASELINE_persistence,13,0.929,168.0,20,1.0,,Low,High,3
+H2_pers_red,10,0.714,116.0,5,0.25,0.19,Low,High — sustained RED,4
+H3_escalation,9,0.643,77.0,8,0.4,0.24,Medium,High — tier climb + channel,5
+H5_fleet_pctile,7,0.5,119.0,3,0.15,0.11,Low,Medium — above fleet norm,6
+BASELINE_A2,4,0.286,66.5,0,0.0,0.0,Medium,High,7

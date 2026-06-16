@@ -1,0 +1,15 @@
+feature,auroc_event_level,auroc_vin_level,cohens_d_vin,n_failed_vins,n_nf_vins,n_failed_events,n_nf_events,mwu_pval_vin,window,note
+is_retry,0.519,0.636,0.59,11,15,894,1156,0.249,final_90d,age_matched: both F and NF in final 90d of their own history
+is_extended_crank,0.514,0.639,0.552,11,15,894,1156,0.1826,final_90d,age_matched: both F and NF in final 90d of their own history
+is_very_extended_crank,0.501,0.539,0.274,11,15,894,1156,0.6732,final_90d,age_matched: both F and NF in final 90d of their own history
+is_deep_dip,0.505,0.558,0.397,11,15,740,848,0.6404,final_90d,age_matched: both F and NF in final 90d of their own history
+is_very_deep_dip,0.529,0.667,0.978,11,15,740,848,0.1611,final_90d,age_matched: both F and NF in final 90d of their own history
+engine_fail_rpm,0.537,0.724,0.788,11,15,894,1156,0.0573,final_90d,age_matched: both F and NF in final 90d of their own history
+is_slow_recovery,0.53,0.527,0.43,11,15,894,1156,0.8355,final_90d,age_matched: both F and NF in final 90d of their own history
+dip_depth,0.502,0.606,0.551,11,15,740,848,0.3776,final_90d,age_matched: both F and NF in final 90d of their own history
+dur_s,0.524,0.588,0.444,11,15,894,1156,0.4581,final_90d,age_matched: both F and NF in final 90d of their own history
+recovery_slope,0.467,0.503,-0.176,11,15,868,1146,1.0,final_90d,age_matched: both F and NF in final 90d of their own history
+is_retry,,0.709,,11,15,,,,final_30d,short-horizon separability
+is_extended_crank,,0.648,,11,15,,,,final_30d,short-horizon separability
+dip_depth,,0.606,,11,15,,,,final_30d,short-horizon separability
+dur_s,,0.648,,11,15,,,,final_30d,short-horizon separability

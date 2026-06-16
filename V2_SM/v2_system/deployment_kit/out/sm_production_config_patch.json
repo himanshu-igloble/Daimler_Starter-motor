@@ -1,0 +1,18 @@
+{
+  "_comment": "Merge this fragment into v2_config.json for fleet 'sm_production'. Do NOT use this config patch for a different fleet.",
+  "fleet_name": "sm_production",
+  "envelope_ref": "D:\\Daimler-starter_motor_alternator_battery\\STARTER MOTOR\\V2_program\\v2_system\\deployment_kit\\out\\sm_production_envelope.json",
+  "baselines_ref": "D:\\Daimler-starter_motor_alternator_battery\\STARTER MOTOR\\V2_program\\v2_system\\deployment_kit\\out\\sm_production_baselines.json",
+  "source_hash": "da37553d0c36",
+  "generated_date": "2026-06-12",
+  "alert_rule": {
+    "m_of_12": 4,
+    "note": "Frozen at m=4 from V1.1 E3. Never re-tune from fleet_onboarding.py."
+  },
+  "cohort_masks": {
+    "sma_dead_threshold_null_rate": 0.9,
+    "note": "Trucks with SMA null rate >90% over their history are flagged as 'sma_dead' and excluded from A1 crank-burst scoring. Determine actual SMA-dead VINs for this fleet with a probe2-style null-rate scan (see DEPLOYMENT_RUNBOOK.md step 3) before go-live.",
+    "sma_dead_vins": "TBD \u2014 complete after step-3 null-rate scan"
+  },
+  "immature_truck_min_weeks": 12
+}
