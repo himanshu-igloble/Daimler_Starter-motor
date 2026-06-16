@@ -10,6 +10,23 @@ Predictive-maintenance pipeline for the **starter motor** of the BharatBenz 5528
 From on-board CAN-bus telemetry it answers: **which** trucks are at risk, **how early** a failure can be
 detected, and **what to do** about it operationally.
 
+## ▶ Start here — **V2** is the current, deployable version
+
+[![recommended](https://img.shields.io/badge/recommended-v2--sm-2ea44f?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v2-sm)
+
+The model is **frozen at its ceiling** (nested AUROC **0.9321**, **10-week** horizon); **V2 turns that
+into operations** — this is what to deploy:
+
+- **H2 dwell pager** — catches **10/14** failures at **0.19 false episodes/truck-year** (median **116-day** lead).
+- **Youden-queue policy** — saves **~43%** vs run-to-failure (beats the FP-averse RED-only policy).
+- **Window matrix** — evidence-conditional maintenance windows (+95% CI) instead of fake day-precision RUL.
+- **Production system** (`V2_SM/v2_system/`) — weekly pipeline, monitors, registry, refit gates, a
+  prospective shadow quarter, and ops runbooks; plus 10 deliverable docs in `V2_SM/deliverables/`.
+
+📂 Branch [`v2-sm`](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v2-sm) · folder `V2_SM/` ·
+start reading `V2_SM/deliverables/…-d10-executive-recommendation.md`.
+**V1 → V1.1 below are the lineage** that established and honestly validated the model.
+
 > **Honest-engineering project.** Every metric here is backed by a shipped report (no numbers from
 > memory). The standing finding is conservative: the classifier is strong (**nested AUROC ≈ 0.932**)
 > and gives a validated **10-week** warning, but ~4 of 14 failures are structurally invisible and
