@@ -1,0 +1,33 @@
+{
+  "fleet_name": "sm_production",
+  "generated_date": "2026-06-12",
+  "source_hash": "da37553d0c36",
+  "walking_score_percentile_policy": "Walking-score percentiles (H2 dwell rule) are computed at runtime per fleet from the fleet's own NF trucks. This file records that policy \u2014 it does NOT store pre-computed percentile values, because those change as new trucks are observed. The envelope_json stores the static end-rule reference; the runtime weekly job computes rolling score percentiles against the live NF distribution.",
+  "nf_baseline_vins": [
+    "VIN10_NF_SM",
+    "VIN11_NF_SM",
+    "VIN12_NF_SM",
+    "VIN13_NF_SM",
+    "VIN14_NF_SM",
+    "VIN15_NF_SM",
+    "VIN16_NF_SM",
+    "VIN17_NF_SM",
+    "VIN18_NF_SM",
+    "VIN19_NF_SM",
+    "VIN1_NF_SM",
+    "VIN20_NF_SM",
+    "VIN2_NF_SM",
+    "VIN3_NF_SM",
+    "VIN4_NF_SM",
+    "VIN5_NF_SM",
+    "VIN6_NF_SM",
+    "VIN7_NF_SM",
+    "VIN8_NF_SM",
+    "VIN9_NF_SM"
+  ],
+  "vsi_drive_std_nf_median": 0.11096747033298016,
+  "ratio_nf_p50": 0.9514196380299148,
+  "ratio_nf_p90": 1.2958036404147397,
+  "immature_truck_policy": "Trucks with <12 weeks of history are excluded from persistence scoring (insufficient history for the 12-week trailing window). They are flagged as 'immature' and scored only on Layer-1 risk tier. This policy is ACTIVE BY DEFAULT for all new trucks.",
+  "no_transfer_warning": "These baseline values are fleet-specific. Do NOT copy them to another fleet. Regulation setpoints differ (27.6\u201328.2 V documented range). Run fleet_onboarding.py on the target fleet's own NF caches."
+}

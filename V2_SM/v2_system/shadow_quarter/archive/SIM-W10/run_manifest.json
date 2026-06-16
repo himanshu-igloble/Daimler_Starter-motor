@@ -1,0 +1,7 @@
+{
+  "run_timestamp": "SIM-W10",
+  "config_version": "2.1.0-B",
+  "simulation": true,
+  "simulation_week_i": 10,
+  "simulation_k": 3
+}

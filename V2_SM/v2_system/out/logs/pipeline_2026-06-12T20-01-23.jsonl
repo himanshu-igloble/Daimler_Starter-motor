@@ -1,0 +1,8 @@
+{"stage": "Stage 0 — Data freshness", "status": "OK", "duration_s": 1.25, "attempt": 1, "error_tail": null}
+{"stage": "Stage V — Input & config validation", "status": "OK", "duration_s": 0.031, "attempt": 1, "error_tail": null}
+{"stage": "Stage 1 — Walking-scores freshness", "status": "OK", "duration_s": 0.0, "attempt": 1, "error_tail": null}
+{"stage": "Stage 2 — Scoring (V2_weekly_job.py)", "status": "OK", "duration_s": 2.125, "attempt": 1, "error_tail": null}
+{"stage": "Stage 3 — Monitors", "status": "OK", "duration_s": 5.719, "attempt": 1, "error_tail": null}
+{"stage": "Stage 4 — Cards (generate_cards.py)", "status": "OK", "duration_s": 8.188, "attempt": 1, "error_tail": null}
+{"stage": "Stage 5 — Dashboard", "status": "OK", "duration_s": 0.359, "attempt": 1, "error_tail": null}
+{"stage": "Stage 6 — Manifest", "status": "OK", "duration_s": 0.0, "attempt": 1, "error_tail": null}

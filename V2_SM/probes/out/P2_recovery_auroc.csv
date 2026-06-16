@@ -1,0 +1,8 @@
+metric,auroc,cohens_d,n_failed,n_nf,mwu_pval,density_confound
+recovery_slope_delta90,0.552,-0.055,11,15,0.678,"per-event rate, density-robust"
+recovery_slope_delta180,0.521,0.031,11,15,0.8763,"per-event rate, density-robust"
+slow_recovery_rate_90,0.536,0.311,11,15,0.7752,"per-event rate, density-robust"
+ts_recovery_slope_trend,0.4,0.513,12,15,0.3932,"per-event rate, density-robust"
+dip_delta90,0.636,0.644,11,15,0.2535,"per-event rate, density-robust"
+recovery_efficiency_delta90,0.339,-0.534,11,15,0.1772,"per-event rate, density-robust"
+f90_recovery_slope,0.497,-0.176,11,15,1.0,"per-event rate, density-robust"

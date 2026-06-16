@@ -1,0 +1,74 @@
+{
+  "run_timestamp": "2026-06-12T20:14:42",
+  "config_version": "2.1.0-B",
+  "config_hash": "19c2fc9921af0cdb128c08446bfaff28c5b8de16a4a0b1dde2c80c029b433f6f",
+  "config_hash_verified": true,
+  "fleet_max_date": "2026-02-18",
+  "snapshot_row_count": 34,
+  "alert_counts_by_priority": {
+    "P0_OPS": 13,
+    "P0": 9,
+    "P1": 4,
+    "P2": 3,
+    "GREEN_OK": 2
+  },
+  "gate_results": {
+    "gate1": "PASS",
+    "gate2": "PASS",
+    "gate3": "PASS",
+    "gate4": "PASS",
+    "gate5": "PASS"
+  },
+  "log_path": "D:\\Daimler-starter_motor_alternator_battery\\STARTER MOTOR\\V2_program\\v2_system\\out\\logs\\pipeline_2026-06-12T20-14-42.jsonl",
+  "exit_code": 0,
+  "stages": [
+    {
+      "name": "Stage 0 — Data freshness",
+      "status": "OK",
+      "duration_s": 4.828,
+      "detail": "No new data since last run (2026-02-18); cache rebuild skipped."
+    },
+    {
+      "name": "Stage V — Input & config validation",
+      "status": "OK",
+      "duration_s": 0.047,
+      "detail": "All input checks passed"
+    },
+    {
+      "name": "Stage 1 — Walking-scores freshness",
+      "status": "OK",
+      "duration_s": 0.015,
+      "detail": "walking_scores.csv found — age: 1.7 hours, 34 VINs, 918 rows."
+    },
+    {
+      "name": "Stage 2 — Scoring (V2_weekly_job.py)",
+      "status": "OK",
+      "duration_s": 4.828,
+      "detail": "rc=0, ALL GATES PASS"
+    },
+    {
+      "name": "Stage 3 — Monitors",
+      "status": "OK",
+      "duration_s": 14.313,
+      "detail": "monitors completed"
+    },
+    {
+      "name": "Stage 4 — Cards (generate_cards.py)",
+      "status": "OK",
+      "duration_s": 48.828,
+      "detail": "GENERATION COMPLETE"
+    },
+    {
+      "name": "Stage 5 — Dashboard",
+      "status": "OK",
+      "duration_s": 1.063,
+      "detail": "dashboard built"
+    },
+    {
+      "name": "Stage 5b — Registry (build_registry.py)",
+      "status": "OK",
+      "duration_s": 17.062,
+      "detail": "  Top-level keys: ['schema_version', 'generated', 'config', 'validation_of_record', 'production_mode"
+    }
+  ]
+}

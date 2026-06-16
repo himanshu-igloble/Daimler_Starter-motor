@@ -1,0 +1,15 @@
+vin_label,ep_final90,ep_baseline,ep_rate_final90_per_yr,ep_rate_baseline_per_yr,note
+VIN1_F_SM,0,12,0.0,20.39,""
+VIN2_F_SM,2,2,8.12,10.01,""
+VIN3_F_SM,4,7,16.23,16.18,""
+VIN4_F_SM,7,3,28.41,17.96,""
+VIN5_F_SM,0,5,0.0,14.16,""
+VIN6_F_SM,3,6,12.18,7.16,""
+VIN7_F_SM,5,16,20.29,12.9,""
+VIN8_F_SM,,,,,SMA_DEAD
+VIN9_F_SM,,,,,SMA_DEAD
+VIN10_F_SM,5,3,20.29,3.36,""
+VIN11_F_SM,2,3,8.12,3.09,""
+VIN12_F_SM,0,13,0.0,18.69,""
+VIN13_F_SM,0,13,0.0,12.83,""
+VIN14_F_SM,4,32,16.23,31.85,""

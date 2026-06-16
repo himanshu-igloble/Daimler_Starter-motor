@@ -1,0 +1,2 @@
+{"stage": "Stage 0 — Data freshness", "status": "OK", "duration_s": 47.25, "attempt": 1, "error_tail": null}
+{"stage": "Stage V — Input & config validation", "status": "OK", "duration_s": 0.047, "attempt": 1, "error_tail": null}

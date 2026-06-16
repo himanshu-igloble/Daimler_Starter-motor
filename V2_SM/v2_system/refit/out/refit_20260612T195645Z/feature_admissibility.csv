@@ -1,0 +1,11 @@
+feature,n_nonnull,cohort_masked,mw_p,auroc_raw,auroc_L40_control,l40_drop,r_n_weeks,r_t_start,r_span_days,max_abs_r_proxy,admissible,verdict
+vsi_std_ratio_30d_L40,34,False,0.00435,0.7929,0.7929,0.0,-0.292,0.213,-0.372,0.372,True,PASS
+vsi_withinwk_std_ratio_30d_w,34,False,4e-05,0.9214,0.9214,0.0,-0.545,0.459,-0.576,0.576,True,watch
+vsi_range_trend,34,False,0.01145,0.7321,0.7321,0.0,-0.413,0.328,-0.398,0.413,True,watch
+vsi_trend_persistence,34,False,0.01411,0.7393,0.7393,0.0,-0.086,0.104,-0.115,0.115,True,PASS
+failed_crank_rate_last90,26,True,0.05728,0.7242,0.7242,0.0,-0.256,0.307,-0.315,0.315,True,PASS
+retry_burst_rate_last90,27,True,0.42188,0.5889,0.5889,0.0,-0.108,0.24,-0.229,0.24,True,PASS
+extended_crank_tail_rate_last90,26,True,0.3502,0.6121,0.6121,0.0,-0.184,0.208,-0.171,0.208,True,PASS
+first_crank_fail_rate_last90,26,True,0.0777,0.7061,0.7061,0.0,-0.192,0.221,-0.238,0.238,True,PASS
+rest_vsi_p05_delta90,34,False,0.01235,0.7571,0.7571,0.0,0.54,-0.489,0.608,0.608,True,watch
+dip_depth_last90_delta,26,True,0.04296,0.7394,0.7394,0.0,-0.346,0.255,-0.251,0.346,True,PASS

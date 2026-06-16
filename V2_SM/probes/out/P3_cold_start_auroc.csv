@@ -1,0 +1,6 @@
+metric,auroc,cohens_d,n_failed,n_nf,mwu_pval,density_confound
+dip_cold_warm_ratio,0.561,0.507,12,15,0.6084,ratio metric = density-independent; delta confirmed below
+dur_cold_warm_ratio,0.439,-0.333,12,15,0.6084,ratio metric = density-independent; delta confirmed below
+cold_dip_delta90,0.739,0.872,11,15,0.043,ratio metric = density-independent; delta confirmed below
+cold_dur_delta90,0.606,0.505,11,15,0.3776,ratio metric = density-independent; delta confirmed below
+cold_dip_mean,0.594,0.385,12,15,0.4208,ratio metric = density-independent; delta confirmed below

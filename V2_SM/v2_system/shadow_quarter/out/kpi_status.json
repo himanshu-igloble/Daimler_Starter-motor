@@ -1,0 +1,268 @@
+{
+  "generated_at": "2026-06-12T19:44:17.826483+00:00",
+  "weeks_elapsed": 13,
+  "weeks_in_quarter": 13,
+  "quarter_status": "FAIL",
+  "kpis": [
+    {
+      "kpi": "K1",
+      "description": "Paging burden: shop-grade P0 alerts / truck-year",
+      "value": 4.6041,
+      "threshold": "<= 0.3",
+      "status": "BREACH",
+      "detail": {
+        "total_p0_shop_alerts": 39,
+        "weeks_elapsed": 13,
+        "truck_years": 8.4707
+      }
+    },
+    {
+      "kpi": "K2",
+      "description": "Calibration slope in [0.5, 2.0]",
+      "value": null,
+      "threshold": "[0.5, 2.0]",
+      "status": "PENDING-DATA",
+      "detail": {
+        "failure_labels_available": 0,
+        "required_for_evaluation": 3,
+        "note": "Awaiting real failure labels from WO feedback loop."
+      }
+    },
+    {
+      "kpi": "K3",
+      "description": ">= 1 watchlist truck with recorded resolution",
+      "value": 0,
+      "threshold": ">= 1",
+      "status": "PENDING-DATA",
+      "detail": {
+        "watchlist_vins": [
+          "VIN15_NF_SM",
+          "VIN2_NF_SM",
+          "VIN5_NF_SM",
+          "VIN8_NF_SM"
+        ],
+        "resolved_vins": []
+      }
+    },
+    {
+      "kpi": "K4",
+      "description": "Zero GREEN-then-failed outside documented blind-spot class",
+      "value": 0,
+      "threshold": "== 0",
+      "status": "ON-TRACK",
+      "detail": {
+        "violations": [],
+        "blind_spot_note": "SMA-dead VINs and silence_trigger_active trucks are exempt. VIN1_F_SM (silence) and VIN9_F_SM (SMA-dead) are exempt in retrospective data."
+      }
+    },
+    {
+      "kpi": "K5",
+      "description": "Tracking only (no threshold): alert volume, transitions, silence",
+      "value": "TRACKING",
+      "threshold": "N/A",
+      "status": "TRACKING",
+      "detail": {
+        "weekly_alert_volume": [
+          {
+            "run_ts": "SIM-W01",
+            "P2": 8,
+            "P0_OPS": 9,
+            "P1": 6,
+            "P0": 4
+          },
+          {
+            "run_ts": "SIM-W02",
+            "P2": 11,
+            "P0_OPS": 8,
+            "P1": 5,
+            "P0": 4
+          },
+          {
+            "run_ts": "SIM-W03",
+            "P2": 6,
+            "P0_OPS": 10,
+            "P0": 7,
+            "P1": 3
+          },
+          {
+            "run_ts": "SIM-W04",
+            "P1": 4,
+            "P0_OPS": 10,
+            "P0": 7,
+            "P2": 4
+          },
+          {
+            "run_ts": "SIM-W05",
+            "P1": 1,
+            "P0_OPS": 11,
+            "P2": 7,
+            "P0": 9
+          },
+          {
+            "run_ts": "SIM-W06",
+            "P2": 7,
+            "P0_OPS": 10,
+            "P1": 1,
+            "P0": 9
+          },
+          {
+            "run_ts": "SIM-W07",
+            "P1": 3,
+            "P0_OPS": 11,
+            "P2": 6,
+            "P0": 9
+          },
+          {
+            "run_ts": "SIM-W08",
+            "P1": 2,
+            "P0_OPS": 11,
+            "P2": 3,
+            "P0": 10
+          },
+          {
+            "run_ts": "SIM-W09",
+            "P0": 11,
+            "P0_OPS": 9,
+            "P2": 3,
+            "P1": 2
+          },
+          {
+            "run_ts": "SIM-W10",
+            "P0": 12,
+            "P0_OPS": 11,
+            "P2": 1,
+            "P1": 2
+          },
+          {
+            "run_ts": "SIM-W11",
+            "P0": 13,
+            "P0_OPS": 10,
+            "P2": 2
+          },
+          {
+            "run_ts": "SIM-W12",
+            "P0": 13,
+            "P0_OPS": 12,
+            "P2": 2,
+            "P1": 1
+          },
+          {
+            "run_ts": "SIM-W13",
+            "P0": 13,
+            "P0_OPS": 13,
+            "P2": 2,
+            "P1": 2
+          }
+        ],
+        "weekly_silence_counts": [
+          {
+            "run_ts": "SIM-W01",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W02",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W03",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W04",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W05",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W06",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W07",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W08",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W09",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W10",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W11",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W12",
+            "silence_count": 13
+          },
+          {
+            "run_ts": "SIM-W13",
+            "silence_count": 13
+          }
+        ],
+        "weekly_evidence_transitions": [
+          {
+            "run_ts": "SIM-W01",
+            "n_transitions": 0
+          },
+          {
+            "run_ts": "SIM-W02",
+            "n_transitions": 7
+          },
+          {
+            "run_ts": "SIM-W03",
+            "n_transitions": 16
+          },
+          {
+            "run_ts": "SIM-W04",
+            "n_transitions": 10
+          },
+          {
+            "run_ts": "SIM-W05",
+            "n_transitions": 7
+          },
+          {
+            "run_ts": "SIM-W06",
+            "n_transitions": 5
+          },
+          {
+            "run_ts": "SIM-W07",
+            "n_transitions": 3
+          },
+          {
+            "run_ts": "SIM-W08",
+            "n_transitions": 8
+          },
+          {
+            "run_ts": "SIM-W09",
+            "n_transitions": 5
+          },
+          {
+            "run_ts": "SIM-W10",
+            "n_transitions": 4
+          },
+          {
+            "run_ts": "SIM-W11",
+            "n_transitions": 5
+          },
+          {
+            "run_ts": "SIM-W12",
+            "n_transitions": 2
+          },
+          {
+            "run_ts": "SIM-W13",
+            "n_transitions": 2
+          }
+        ]
+      }
+    }
+  ]
+}
