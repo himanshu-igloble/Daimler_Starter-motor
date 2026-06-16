@@ -1,1 +1,119 @@
-# Daimler_Starter-motor
+# Daimler / BharatBenz Starter Motor — RUL & Risk Prediction
+
+**Branches:**
+[![main](https://img.shields.io/badge/main-all_3_versions-2ea44f?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/main)
+[![v1-sm](https://img.shields.io/badge/v1--sm-baseline-1f6feb?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v1-sm)
+[![v1.1-sm](https://img.shields.io/badge/v1.1--sm-audited_redesign-1f6feb?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v1.1-sm)
+[![v2-sm](https://img.shields.io/badge/v2--sm-decision_layer-1f6feb?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v2-sm)
+
+Predictive-maintenance pipeline for the **starter motor** of the BharatBenz 5528T heavy-duty truck.
+From on-board CAN-bus telemetry it answers: **which** trucks are at risk, **how early** a failure can be
+detected, and **what to do** about it operationally.
+
+> **Honest-engineering project.** Every metric here is backed by a shipped report (no numbers from
+> memory). The standing finding is conservative: the classifier is strong (**nested AUROC ≈ 0.932**)
+> and gives a validated **10-week** warning, but ~4 of 14 failures are structurally invisible and
+> day-precision RUL is mathematically closed at this sample size — so we ship **risk tiers + validated
+> alerts + evidence-conditional windows**, not a per-truck countdown.
+
+---
+
+## 1. Repository & branch map
+
+Each version lives on its own branch (so you can roll back to any version at any time); `main` carries
+**all three** versions merged together.
+
+| Branch | What's on it | Use it to… |
+|---|---|---|
+| **`main`** | All three versions (`V1_SM/` + `V1.1_SM/` + `V2_SM/`) + this README + requirements + comparison | Browse everything in one place |
+| **`v1-sm`** | **Only** the V1 deliverable (baseline classifier) | Check out / roll back to V1 in isolation |
+| **`v1.1-sm`** | **Only** the V1.1 deliverable (audited nested redesign) | Check out / roll back to V1.1 in isolation |
+| **`v2-sm`** | **Only** the V2 deliverable (decision layer + deployment system) | Check out / roll back to V2 in isolation |
+
+```bash
+git clone https://github.com/himanshu-igloble/Daimler_Starter-motor
+cd Daimler_Starter-motor
+git switch v1-sm     # see ONLY V1
+git switch v1.1-sm   # see ONLY V1.1
+git switch v2-sm     # see ONLY V2
+git switch main      # see ALL THREE
+```
+
+---
+
+## 2. Version comparison
+
+The model is **frozen from V1.1 onward** (nested AUROC 0.9321, 10-week horizon); the differences are in
+honesty/calibration (V1 → V1.1) and in the operational decision layer (V1.1 → V2).
+
+| Dimension | **V1** — Baseline | **V1.1** — Audited Redesign | **V2** — Decision Layer |
+|---|---|---|---|
+| Branch | [`v1-sm`](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v1-sm) | [`v1.1-sm`](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v1.1-sm) | [`v2-sm`](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v2-sm) |
+| Question | classifier + lead-time channel? | was 0.921 honest? add calibration, alerts, horizon | detect earlier, cut FPs, ship ops — find the ceiling |
+| Classifier AUROC | **0.9214** (non-nested) → restated **0.893** | **0.9321** nested (CI [0.811, 0.986]) | **0.9321 — unchanged** (ceiling) |
+| Validation | 34-fold LOVO, non-nested | **fully nested** 34-fold LOVO | re-audited, pool selection-complete |
+| Calibration | slope 4.72 — not shippable | **slope 0.86 / Brier 0.124 — shippable** | unchanged |
+| Detection horizon | not measured | **k\* = 10 weeks** validated | 10 weeks — triple-confirmed |
+| Lead-time / pager | **none** (90% NF false-positive) | 3 validated channels; A2 **0/20 NF**, ~66 d lead | **H2 dwell pager: 10/14 @ 0.19 NF ep/truck-yr** |
+| RUL | risk bands only | risk bands + ~10-wk window | **window matrix** (+ 95% CI) replaces RUL |
+| Economics | not modeled | tiers by Youden (FP-averse) | **Youden-queue saves ~43%** vs run-to-failure |
+| Verdict | classifier works, lead-time doesn't | the honest ceiling: 0.932 + 10-wk warning | model finished; the win is the **decision layer** |
+
+**Full head-to-head:** [`VERSION_COMPARISON_SM.md`](./VERSION_COMPARISON_SM.md).
+**Performance ceiling** (all 3 versions): nested AUROC ≈ 0.932 · 10-week horizon · alert recall ~10–11/14
+(4/14 silent/abrupt failures are structurally invisible). Breaking it needs **new signals**, not new models.
+
+---
+
+## 3. How to navigate the project
+
+| Version | Lives in | Key reports | Pipeline (run in order) |
+|---|---|---|---|
+| **V1** | `V1_SM/` | `reports/V1_SM_final_report.md` | `src/V1_SM_build_weekly_cache → crank_events → features → feature_selection → ridge_classifier → lead_time → final_report → production_graphs` |
+| **V1.1** | `V1.1_SM/` | `reports/V1_1_SM_RESULTS_MASTER.md`, `Plan/V1_1_SM_spec.md` | `src/V1_1_SM_build_daily_cache → features → nested_ridge → horizon → alerts → explainability → daily_risk_graphs` |
+| **V2** | `V2_SM/` | `deliverables/…-sm-v2-d01..d10-*.md` (10 deliverables) | `v2_system/V2_weekly_pipeline.py`; deploy via `v2_system/deployment_kit/DEPLOYMENT_RUNBOOK.md` |
+
+Each version dir also has `cache/` (committed intermediates — pipelines reproduce **without** the raw
+data), `results/` (machine-readable CSV/JSON), `graphs/`/`visualizations`, and `presentation/` (decks).
+V2 additionally ships a full `v2_system/` (monitors, registry, refit gates, shadow-quarter sim, ops runbooks).
+
+**Where to start:** `V2_SM/deliverables/…-d10-executive-recommendation.md` (the final word) →
+`VERSION_COMPARISON_SM.md` (what changed) → each version's report above.
+
+---
+
+## 4. Requirements & how to run
+
+- **Python 3.11+** with `numpy`, `pandas`, `scipy`, `scikit-learn` (RidgeClassifier), `matplotlib`,
+  `lifelines` (survival), `openpyxl` (xlsx), `python-pptx` (decks).
+  ```bash
+  pip install numpy pandas scipy scikit-learn matplotlib lifelines openpyxl python-pptx
+  ```
+- Run a version by executing its stage scripts in the order in the table above (each reads the previous
+  stage's cache). The committed `*/cache/` lets reports and figures reproduce **without** the raw data.
+
+See [`REQUIREMENTS.md`](./REQUIREMENTS.md) for the full functional + data + technical requirements.
+
+---
+
+## 5. Data & domain notes (read before interpreting results)
+
+- **Raw data is NOT in this repo.** The source is ~204 M rows / ~14.5 GB of CAN telemetry (`.gitignore`d).
+  The committed per-VIN weekly/daily caches under `*/cache/` are what the downstream stages consume.
+- **SM fleet = 34 trucks** (14 failed `_F_SM` + 20 non-failed `_NF_SM`). All labels carry an `_SM` suffix.
+- **VIN independence (hard rule):** starter-motor and alternator VINs are **different physical trucks**
+  that reuse the same numbering. `VIN1_SM ≠ VIN1_ALT`. **No cross-dataset VIN-level analysis is valid.**
+- **Key CAN signals:** `VSI` supply voltage (0–36 V), `SMA` starter-motor active {0,1}, `RPM` engine
+  speed, `CSP` vehicle speed; crank events are derived from SMA/RPM/VSI transitions.
+
+---
+
+## 6. Bottom line
+
+The starter-motor classifier is **finished** at nested **AUROC 0.9321** with a validated **10-week**
+detection horizon — confirmed three times over. **V1** established the baseline (and exposed that its
+own headline was optimistic). **V1.1** restated it honestly (0.893), beat it cleanly (0.9321), and added
+calibration + validated alerts + the horizon. **V2** built the **decision layer**: a deployable dwell
+pager (0.19 false episodes/truck-year), a cost-optimal **Youden-queue** policy (~43% saving), honest
+evidence-conditional windows instead of RUL, and a production system with governance and a shadow
+quarter. The next gain requires **new sensors**, not new models. Ship **tiers + alerts + windows**.
