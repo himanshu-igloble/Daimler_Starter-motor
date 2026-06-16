@@ -1,0 +1,10 @@
+method,sizes,ari_failed,ari_sma_dead,ari_silent_gap,kw_p_n_weeks,kw_p_t_start
+ward_k2,"[4, 30]",0.144,-0.109,-0.109,0.0139,0.0035
+ward_k3,"[4, 2, 28]",0.229,-0.14,0.022,0.013,0.0063
+ward_k4,"[4, 2, 12, 16]",0.116,-0.039,-0.007,0.0275,0.0078
+ward_k5,"[3, 1, 2, 12, 16]",0.106,-0.045,-0.012,0.0528,0.0175
+dbscan_eps3.58,"clusters=1,noise=13",0.198,,,,
+dbscan_eps5.16,"clusters=1,noise=7",0.197,,,,
+dbscan_eps7.30,"clusters=1,noise=2",0.058,,,,
+spectral_k2,"[25, 9]",-0.016,-0.006,-0.104,0.31,
+spectral_k3,"[8, 18, 8]",0.002,0.009,-0.057,0.2384,

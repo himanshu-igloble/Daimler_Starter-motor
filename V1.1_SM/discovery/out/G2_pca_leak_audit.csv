@@ -1,0 +1,7 @@
+matrix,pc,explained_var,auroc_vs_label,spearman_n_weeks,spearman_t_start,spearman_span_days,leak_flag
+vsi_drive_std,1,0.2287,0.9321,0.504,-0.516,0.55,LEAK
+vsi_drive_std,2,0.0961,0.6286,0.147,-0.198,0.088,ok
+vsi_drive_std,3,0.084,0.5214,0.12,-0.102,0.104,ok
+vsi_drive_mean,1,0.3498,0.6429,0.394,0.126,0.318,ok
+vsi_drive_mean,2,0.1342,0.675,-0.294,0.221,-0.416,watch
+vsi_drive_mean,3,0.083,0.7321,-0.466,0.396,-0.521,LEAK

@@ -1,0 +1,5 @@
+metric,cohort,n_vinmonths,kw_p,month_min,month_max,med_monsoon,med_post-monsoon,med_summer,med_winter
+vsi_drive_std,sma_alive,303,0.9039,7:0.111,10:0.120,0.118,0.118,0.113,0.116
+vsi_drive_std,sma_dead,84,0.6289,2:0.160,6:0.219,0.206,0.18,0.185,0.173
+vsi_rest_median,sma_alive,301,0.9541,7:24.599,2:24.825,24.698,24.75,24.749,24.76
+vsi_rest_median,sma_dead,84,0.6682,9:24.580,2:25.257,24.704,24.9,25.025,24.975

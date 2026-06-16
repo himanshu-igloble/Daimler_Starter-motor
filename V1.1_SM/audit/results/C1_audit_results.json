@@ -1,0 +1,258 @@
+{
+  "v1_reproduction": {
+    "auroc": 0.9214285714285715,
+    "max_prob_diff_vs_csv": 4.7844795940554796e-05
+  },
+  "nested_lovo": {
+    "nested_auroc": 0.8928571428571429,
+    "v1_reported_auroc": 0.9214,
+    "optimism": 0.028542857142857092,
+    "nested_bootstrap_95ci": [
+      0.7464231601731602,
+      1.0
+    ],
+    "per_fold_threshold_metrics": {
+      "recall": 0.8571428571428571,
+      "specificity": 0.9,
+      "tp": 12,
+      "fp": 2,
+      "fn": 2,
+      "tn": 18
+    },
+    "pooled_youden_on_nested": {
+      "thr": 0.4632071322290801,
+      "auroc": 0.8928571428571429,
+      "recall": 0.8571428571428571,
+      "specificity": 0.95,
+      "tp": 12,
+      "fp": 1,
+      "fn": 2,
+      "tn": 19
+    },
+    "winner_set_identical_folds": 27,
+    "feature_frequency": {
+      "vsi_std_ratio_30d": 34,
+      "vsi_dominant_freq": 34,
+      "failed_crank_rate_last90": 28,
+      "vsi_range_trend": 31,
+      "vsi_rest_p05_last90": 2,
+      "crank_dur_trend": 7
+    },
+    "pool_size_min_max": [
+      4,
+      6
+    ]
+  },
+  "threshold_honesty": {
+    "fold_thr_min": 0.42034232226932255,
+    "fold_thr_median": 0.4398236285578033,
+    "fold_thr_max": 0.4929364656146989,
+    "pooled_thr": 0.4382,
+    "pooled_metrics": {
+      "auroc": 0.9214285714285715,
+      "recall": 0.9285714285714286,
+      "specificity": 0.9,
+      "tp": 13,
+      "fp": 2,
+      "fn": 1,
+      "tn": 18
+    },
+    "per_fold_metrics": {
+      "tp": 12,
+      "fp": 2,
+      "fn": 2,
+      "tn": 18,
+      "recall": 0.8571428571428571,
+      "specificity": 0.9
+    }
+  },
+  "calibration": {
+    "base_rate": 0.4117647058823529,
+    "mean_pred_prob": 0.45564684723418264,
+    "brier": 0.1491206779754248,
+    "brier_constant_reference": 0.2422145328719723,
+    "mean_prob_failed": 0.610162768786903,
+    "mean_prob_nonfailed": 0.34748570214727836,
+    "recal_slope": 4.72043058502131,
+    "recal_intercept": 0.8466284048056945,
+    "citl_logit_gap": -0.1787947814764853
+  },
+  "model_zoo": {
+    "RidgeClassifier(a=1.0)": {
+      "auroc": 0.9214,
+      "recall": 0.9286,
+      "specificity": 0.9
+    },
+    "LogisticRegression(L2,C=1)": {
+      "auroc": 0.9143,
+      "recall": 0.9286,
+      "specificity": 0.9
+    },
+    "LogisticRegression(L2,C=0.1)": {
+      "auroc": 0.9036,
+      "recall": 0.9286,
+      "specificity": 0.9
+    },
+    "LinearSVM(C=1)": {
+      "auroc": 0.9,
+      "recall": 0.8571,
+      "specificity": 0.85
+    },
+    "GaussianNB": {
+      "auroc": 0.9125,
+      "recall": 1.0,
+      "specificity": 0.8
+    },
+    "kNN(k=5)": {
+      "auroc": 0.8946,
+      "recall": 0.9286,
+      "specificity": 0.75
+    },
+    "kNN(k=7)": {
+      "auroc": 0.9089,
+      "recall": 0.7857,
+      "specificity": 0.9
+    },
+    "DecisionTree(depth=2)": {
+      "auroc": 0.6679,
+      "recall": 0.7143,
+      "specificity": 0.75
+    },
+    "GradientBoosting(d2,100)": {
+      "auroc": 0.7786,
+      "recall": 0.7143,
+      "specificity": 0.95
+    },
+    "RandomForest(300)": {
+      "auroc": 0.9214,
+      "recall": 1.0,
+      "specificity": 0.7
+    }
+  },
+  "stability": {
+    "jackknife_min": 0.9154,
+    "jackknife_max": 0.9731,
+    "jackknife_top_negative": [
+      {
+        "vin": "VIN10_F_SM",
+        "failed": 1,
+        "auroc_without": 0.9154,
+        "delta": -0.006
+      },
+      {
+        "vin": "VIN6_F_SM",
+        "failed": 1,
+        "auroc_without": 0.9154,
+        "delta": -0.006
+      },
+      {
+        "vin": "VIN11_F_SM",
+        "failed": 1,
+        "auroc_without": 0.9154,
+        "delta": -0.006
+      }
+    ],
+    "jackknife_top_positive": [
+      {
+        "vin": "VIN8_NF_SM",
+        "failed": 0,
+        "auroc_without": 0.9248,
+        "delta": 0.0034
+      },
+      {
+        "vin": "VIN9_NF_SM",
+        "failed": 0,
+        "auroc_without": 0.9436,
+        "delta": 0.0222
+      },
+      {
+        "vin": "VIN8_F_SM",
+        "failed": 1,
+        "auroc_without": 0.9731,
+        "delta": 0.0516
+      }
+    ],
+    "fold_order_aurocs": [
+      0.9214285714285715,
+      0.9214285714285715,
+      0.9214285714285715,
+      0.9214285714285715,
+      0.9214285714285715
+    ],
+    "ridge_seed_max_prob_diff": 0.0
+  },
+  "truck_weeks": {
+    "total": 2636,
+    "per_vin": {
+      "VIN10_F_SM": 62,
+      "VIN10_NF_SM": 61,
+      "VIN11_F_SM": 65,
+      "VIN11_NF_SM": 74,
+      "VIN12_F_SM": 50,
+      "VIN12_NF_SM": 106,
+      "VIN13_F_SM": 67,
+      "VIN13_NF_SM": 83,
+      "VIN14_F_SM": 69,
+      "VIN14_NF_SM": 108,
+      "VIN15_NF_SM": 107,
+      "VIN16_NF_SM": 93,
+      "VIN17_NF_SM": 68,
+      "VIN18_NF_SM": 94,
+      "VIN19_NF_SM": 92,
+      "VIN1_F_SM": 47,
+      "VIN1_NF_SM": 99,
+      "VIN20_NF_SM": 91,
+      "VIN2_F_SM": 25,
+      "VIN2_NF_SM": 103,
+      "VIN3_F_SM": 37,
+      "VIN3_NF_SM": 101,
+      "VIN4_F_SM": 22,
+      "VIN4_NF_SM": 90,
+      "VIN5_F_SM": 33,
+      "VIN5_NF_SM": 96,
+      "VIN6_F_SM": 58,
+      "VIN6_NF_SM": 93,
+      "VIN7_F_SM": 79,
+      "VIN7_NF_SM": 104,
+      "VIN8_F_SM": 82,
+      "VIN8_NF_SM": 103,
+      "VIN9_F_SM": 74,
+      "VIN9_NF_SM": 100
+    }
+  },
+  "lifelines": "0.30.0",
+  "error_context": [
+    {
+      "vin_label": "VIN5_F_SM",
+      "failed": 1,
+      "vsi_std_ratio_30d": 0.7259395122528076,
+      "vsi_dominant_freq": 0.03125,
+      "failed_crank_rate_last90": NaN,
+      "vsi_range_trend": 0.1980909000743519
+    },
+    {
+      "vin_label": "VIN8_F_SM",
+      "failed": 1,
+      "vsi_std_ratio_30d": 0.7386094331741333,
+      "vsi_dominant_freq": 0.0123456790123456,
+      "failed_crank_rate_last90": 0.006006006006006,
+      "vsi_range_trend": -0.0444446139865451
+    },
+    {
+      "vin_label": "VIN8_NF_SM",
+      "failed": 0,
+      "vsi_std_ratio_30d": 0.3317627310752868,
+      "vsi_dominant_freq": 0.0194174757281553,
+      "failed_crank_rate_last90": 0.3232323232323232,
+      "vsi_range_trend": 0.0
+    },
+    {
+      "vin_label": "VIN9_NF_SM",
+      "failed": 0,
+      "vsi_std_ratio_30d": 0.4062932729721069,
+      "vsi_dominant_freq": 0.0404040404040404,
+      "failed_crank_rate_last90": 0.0,
+      "vsi_range_trend": 0.019090799851851
+    }
+  ]
+}
