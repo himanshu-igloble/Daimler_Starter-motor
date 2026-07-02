@@ -1,8 +1,0 @@
-metric,auroc,cohens_d,n_failed,n_nf,mwu_pval,density_check
-ts_vsi_std_slope_per_week,0.954,1.156,14,20,0.0,"Theil-Sen slope per week = time-normalized, density-robust"
-fleet_rank_drift,0.839,1.41,14,20,0.0009,"Theil-Sen slope per week = time-normalized, density-robust"
-ts_fleet_rank_slope,0.882,1.556,14,20,0.0002,"Theil-Sen slope per week = time-normalized, density-robust"
-weeks_above_p70_fleet,0.562,0.121,14,20,0.5515,"Theil-Sen slope per week = time-normalized, density-robust"
-first_week_above_p70,0.556,-0.207,13,20,0.5933,"Theil-Sen slope per week = time-normalized, density-robust"
-ts_retry_rate_slope_per_week,0.5,,12,15,1.0,"Theil-Sen slope per week = time-normalized, density-robust"
-late_fleet_rank_pct,0.789,1.107,14,20,0.0048,"Theil-Sen slope per week = time-normalized, density-robust"

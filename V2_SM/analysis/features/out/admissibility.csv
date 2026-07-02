@@ -1,3 +1,0 @@
-feature,n_nonnull,mw_p,auroc,r_n_weeks,r_t_start,r_span_days,proxy_flags,r_vs_vsi_withinwk,r_vs_rest_vsi_p05,r_vs_vsi_range_trend,r_vs_dip_depth,proxy_flag
-cold_dip_delta90,26,0.04296,0.7394,-0.444,0.302,-0.3,,0.255,-0.701,0.496,0.923,False
-rpm_rise_lag_delta90,27,0.05393,0.7222,-0.204,0.267,-0.263,,0.183,-0.498,0.255,0.501,False

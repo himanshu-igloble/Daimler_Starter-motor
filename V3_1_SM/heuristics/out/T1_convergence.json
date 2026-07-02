@@ -1,9 +1,0 @@
-{
-  "n_failed_scored": 11,
-  "n_agree": 9,
-  "a3_unscored": 3,
-  "nf_distribution": {
-    "INSUFFICIENT": 20
-  },
-  "note": "convergence with telemetry-derived archetypes; NOT ground-truth accuracy (spec \u00a78)"
-}

@@ -1,6 +1,0 @@
-{
-  "min_count": 2,
-  "channels": ["tier_ge_amber", "persistence_terminal", "a1_burst", "a2"],
-  "persistence_col": "pers_terminal_fire_start",
-  "note": "H4 re-run with persistence = TERMINAL episode start (not first-ever-fire). Frozen a priori."
-}
