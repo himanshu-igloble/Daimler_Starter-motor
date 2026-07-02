@@ -1,9 +1,0 @@
-{
-  "cold_rest_gap_s": 21600, "night_hours": [0,1,2,3,4],
-  "min_events_per_vin": 8, "min_events_side": 3, "min_events_base": 6,
-  "min_weeks_side": 3, "dip_min_events": 10,
-  "anr_pre_crank_window_s": 60, "anr_sentinels": {"high": 65535.0, "neg": -5000.0},
-  "recovery_window_s": 45,
-  "zscore": "global_across_34_vins_nan_aware",
-  "interaction_note": "z(A)*z(B) with global mean/std; SCREEN-GRADE; E1 survivors re-verified fold-safe in Task 9"
-}
