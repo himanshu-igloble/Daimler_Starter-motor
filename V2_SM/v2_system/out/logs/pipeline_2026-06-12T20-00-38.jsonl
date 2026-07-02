@@ -1,5 +1,0 @@
-{"stage": "Stage 0 — Data freshness", "status": "OK", "duration_s": 4.079, "attempt": 1, "error_tail": null}
-{"stage": "Stage V — Input & config validation", "status": "OK", "duration_s": 0.016, "attempt": 1, "error_tail": null}
-{"stage": "Stage 1 — Walking-scores freshness", "status": "OK", "duration_s": 0.016, "attempt": 1, "error_tail": null}
-{"stage": "Stage 2 — Scoring (V2_weekly_job.py)", "status": "FAIL", "duration_s": 5.359, "attempt": 2, "error_tail": "\\Daimler-starter_motor_alternator_battery\\STARTER MOTOR\\V2_program\\v2_system\\V2_weekly_job.py\", line 630\n    global MIN_WEEKS_MATURE, IMMATURE_TIER_CAP, IMMATURE_SUPPRESS\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: annotated name 'MIN_WEEKS_MATURE' can't be global"}
-{"stage": "Stage 6 — Manifest", "status": "OK", "duration_s": 0.016, "attempt": 1, "error_tail": null}

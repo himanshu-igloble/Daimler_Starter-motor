@@ -1,2 +1,0 @@
-heuristic,recall_n_of_14,recall_frac,med_lead_d,nf_ever_fire_n,nf_ever_fire_frac,nf_eps_per_truck_year,accept,accept_reason
-A3_h4_terminal,13,0.929,168.0,7,0.35,0.43,False,"nf_eps=0.43 (<0.19? False), recall=13/14 (>=10? True), lead=168.0d (>=116? True)"
