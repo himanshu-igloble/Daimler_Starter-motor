@@ -1,0 +1,10 @@
+{
+  "nf_eps_per_truck_year_max": 0.19,
+  "nf_eps_strict_lower": true,
+  "recall_min_n": 10,
+  "recall_denom": 14,
+  "lead_min_days": 116,
+  "baseline_rule": "H2_pers_red",
+  "baseline_metrics": {"recall_n": 10, "med_lead_d": 116, "nf_ever_fire_n": 5, "nf_eps_per_truck_year": 0.19},
+  "note": "A new rule SHIPS only if nf_eps < 0.19 AND recall >= 10/14 AND lead ~>= 116 d."
+}

@@ -1,0 +1,67 @@
+{
+  "mw_p": {
+    "dose_dip_x_starts": 0.2515,
+    "weakbat_cold_load": 0.4208,
+    "reg_instab_x_usage": 0.1643,
+    "sag_under_load": 0.3502,
+    "cold_start_fraction_delta90": 1.0,
+    "ged3_rate_delta90": 1.0,
+    "night_start_fraction_delta90": 0.9029
+  },
+  "bh_fdr": {
+    "reg_instab_x_usage": 1.0,
+    "dose_dip_x_starts": 0.8803,
+    "sag_under_load": 0.8171,
+    "weakbat_cold_load": 0.7363,
+    "night_start_fraction_delta90": 1.0,
+    "cold_start_fraction_delta90": 1.0,
+    "ged3_rate_delta90": 1.0
+  },
+  "baseline_nonnested": 0.9357,
+  "baseline_nested": 0.9321,
+  "fold_safe_reverify": "n/a - no E1 survivors",
+  "sklearn_block": {
+    "sklearn_available": true,
+    "mutual_info": {
+      "vsi_withinwk_std_ratio_30d_w": 0.3658,
+      "rest_vsi_p05_delta90": 0.0774,
+      "vsi_range_trend": 0.2091,
+      "dip_depth_last90_delta": 0.059,
+      "dose_dip_x_starts": 0.0,
+      "weakbat_cold_load": 0.045,
+      "reg_instab_x_usage": 0.0099,
+      "sag_under_load": 0.0,
+      "cold_start_fraction_delta90": 0.0,
+      "ged3_rate_delta90": 0.0,
+      "night_start_fraction_delta90": 0.0
+    },
+    "gbm_lovo_auroc": 0.8429,
+    "permutation_importance": {
+      "vsi_withinwk_std_ratio_30d_w": 0.3333,
+      "rest_vsi_p05_delta90": 0.1431,
+      "vsi_range_trend": 0.0098,
+      "dip_depth_last90_delta": 0.0,
+      "dose_dip_x_starts": 0.0,
+      "weakbat_cold_load": 0.1049,
+      "reg_instab_x_usage": 0.0,
+      "sag_under_load": 0.0,
+      "cold_start_fraction_delta90": 0.0,
+      "ged3_rate_delta90": 0.0,
+      "night_start_fraction_delta90": 0.0
+    },
+    "shap_mean_abs": {
+      "vsi_withinwk_std_ratio_30d_w": 2.5228,
+      "rest_vsi_p05_delta90": 1.2222,
+      "vsi_range_trend": 0.1718,
+      "dip_depth_last90_delta": 0.0166,
+      "dose_dip_x_starts": 0.152,
+      "weakbat_cold_load": 0.785,
+      "reg_instab_x_usage": 0.1146,
+      "sag_under_load": 0.0,
+      "cold_start_fraction_delta90": 0.0662,
+      "ged3_rate_delta90": 0.0,
+      "night_start_fraction_delta90": 0.0
+    }
+  },
+  "note": "GBM AUROC (if present) is a SCREEN-GRADE model-class probe (n=34, high variance); not a shipped model."
+}

@@ -1,0 +1,12 @@
+{
+  "rest_vsi_col": "vsi_rest_median",
+  "active_days_min": 2,
+  "baseline_weeks": 8,
+  "min_usable_weeks": 8,
+  "cusum_k_sigma": 0.5,
+  "cusum_h_sigma": 4.0,
+  "ewma_lambda": 0.3,
+  "ewma_L_sigma": 3.0,
+  "direction": "down",
+  "note": "Standardized tabular CUSUM (k,h in sigma units). DOWN-only to reject NF battery up-steps. Frozen a priori."
+}

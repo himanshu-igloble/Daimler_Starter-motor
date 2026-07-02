@@ -1,0 +1,6 @@
+{
+  "alignment_window_weeks": 4,
+  "pairs": [["H2_pers_red", "A2"], ["H2_pers_red", "H5_fleet_pctile"], ["A1_cusum", "H2_pers_red"]],
+  "persistence_state": "terminal",
+  "note": "Conjunction fires at week i if BOTH channels fired within [i-3, i]. Frozen a priori."
+}

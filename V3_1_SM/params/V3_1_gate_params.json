@@ -1,0 +1,12 @@
+{
+  "reconcile_expected_nonnested": 0.9357, "reconcile_nested": 0.9321, "reconcile_tol": 0.002,
+  "alpha_mw": 0.10, "auroc_min": 0.60, "corr_max_redundancy": 0.85,
+  "proxy_leak_spearman_max": 0.5, "e2_add_threshold": 0.01, "ridge_alpha": 1.0,
+  "proxy_targets": ["n_weeks", "t_start", "span"],
+  "modal_subset": ["vsi_withinwk_std_ratio_30d_w", "rest_vsi_p05_delta90", "vsi_range_trend", "dip_depth_last90_delta"],
+  "sma_dead": ["VIN8_F_SM", "VIN9_F_SM", "VIN10_NF_SM", "VIN11_NF_SM", "VIN12_NF_SM", "VIN13_NF_SM", "VIN20_NF_SM"],
+  "candidates": ["hard_start_goodv_rate_delta90", "dip_resid_trend_12w", "lowv_crank_share_delta90",
+                 "starts_per_engine_hour_delta90", "dose_dip_x_intensity", "dropout_share_delta90", "dip_seasonal_contrast"],
+  "sma_dead_exempt": ["dropout_share_delta90"],
+  "seeds": {"bootstrap": 42, "permutation": 43}
+}

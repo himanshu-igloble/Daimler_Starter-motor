@@ -1,0 +1,4 @@
+feature,n_nonnull,mw_p,auroc,r_n_weeks,r_t_start,r_span_days,proxy_flags,r_vs_vsi_withinwk,r_vs_rest_vsi_p05,r_vs_vsi_range_trend,r_vs_dip_depth,proxy_flag
+intercrank_cv_delta90,27,0.44946,0.5889,-0.146,0.215,-0.196,,-0.112,0.108,-0.209,-0.126,False
+z_cold_dip_delta90,27,0.04813,0.7278,-0.327,0.276,-0.272,,0.223,-0.669,0.406,0.938,False
+anr_pos_mean_delta90,27,0.98054,0.5056,-0.038,-0.035,0.038,,-0.004,0.377,-0.058,-0.314,False

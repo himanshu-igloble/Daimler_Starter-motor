@@ -1,0 +1,21 @@
+{
+  "episode_merge_gap_s": 60,
+  "heartbeat_band_min": [14, 18],
+  "heartbeat_chain_intervening_max_s": 60,
+  "dropout_min_s": 3600,
+  "dropout_resume_rows": 5, "dropout_resume_rpm": 500,
+  "off_confirm_sma_within_s": 300,
+  "idle_rpm_max": 700, "idle_csp_max": 5.0,
+  "run_start_rpm": 550, "run_start_rows": 2,
+  "cwr_rpm": 400, "cwr_gap_max_s": 10,
+  "recrank_within_s": 120,
+  "engine_dt_cap_s": 10,
+  "trip_short_min": 15,
+  "soak_overnight_h": 8, "soak_hot_restart_min": 30,
+  "sv1_min_frac": 0.90, "sv1_window_s": 120,
+  "sv3_km_day": [10, 800], "sv3_eh_day": [0.5, 22], "sv3_min_frac": 0.90,
+  "sv4_min_soak_frac": 0.60,
+  "p01_confirm_frac": 0.70, "p01_boundary_window_s": 120, "p01_max_chains_per_vin": 200,
+  "rpm_sentinel": 65535, "csp_sentinel": 65535,
+  "vsi_scale_above": 36.0, "vsi_scale_factor": 0.2
+}

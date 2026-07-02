@@ -1,0 +1,4 @@
+heuristic,recall_n_of_14,recall_frac,med_lead_d,nf_ever_fire_n,nf_ever_fire_frac,nf_eps_per_truck_year,accept,accept_reason
+H2_pers_red__AND__A2,4,0.286,49.0,0,0.0,0.0,False,"nf_eps=0.0 (<0.19? True), recall=4/14 (>=10? False), lead=49.0d (>=116? False)"
+H2_pers_red__AND__H5_fleet_pctile,7,0.5,119.0,3,0.15,0.108,False,"nf_eps=0.108 (<0.19? True), recall=7/14 (>=10? False), lead=119.0d (>=116? True)"
+A1_cusum__AND__H2_pers_red,5,0.357,133.0,3,0.15,0.108,False,"nf_eps=0.108 (<0.19? True), recall=5/14 (>=10? False), lead=133.0d (>=116? True)"

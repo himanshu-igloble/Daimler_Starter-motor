@@ -1,0 +1,213 @@
+{
+  "reconciliation": {
+    "computed": 0.9357,
+    "expected": 0.9357,
+    "pass": true
+  },
+  "modal_nonnested_auroc": 0.9357,
+  "sv3_dropped": [],
+  "n_candidates": 7,
+  "E1": [
+    {
+      "feature": "hard_start_goodv_rate_delta90",
+      "n_nonnull": 27,
+      "mw_p": 0.2104,
+      "auroc": 0.6161,
+      "r_proxy": {
+        "n_weeks": -0.31,
+        "t_start": 0.416,
+        "span": -0.32
+      },
+      "r_vs_modal": {
+        "vsi_withinwk_std_ratio_30d_w": -0.238,
+        "rest_vsi_p05_delta90": -0.194,
+        "vsi_range_trend": -0.204,
+        "dip_depth_last90_delta": 0.057
+      },
+      "proxy_flag": false,
+      "redundancy_flag": false,
+      "e1_pass": false
+    },
+    {
+      "feature": "dip_resid_trend_12w",
+      "n_nonnull": 26,
+      "mw_p": 0.0679,
+      "auroc": 0.6786,
+      "r_proxy": {
+        "n_weeks": -0.415,
+        "t_start": 0.41,
+        "span": -0.399
+      },
+      "r_vs_modal": {
+        "vsi_withinwk_std_ratio_30d_w": 0.35,
+        "rest_vsi_p05_delta90": -0.206,
+        "vsi_range_trend": 0.406,
+        "dip_depth_last90_delta": 0.359
+      },
+      "proxy_flag": false,
+      "redundancy_flag": false,
+      "e1_pass": true
+    },
+    {
+      "feature": "lowv_crank_share_delta90",
+      "n_nonnull": 27,
+      "mw_p": 1.0,
+      "auroc": 0.5107,
+      "r_proxy": {
+        "n_weeks": 0.094,
+        "t_start": 0.036,
+        "span": 0.069
+      },
+      "r_vs_modal": {
+        "vsi_withinwk_std_ratio_30d_w": 0.035,
+        "rest_vsi_p05_delta90": 0.186,
+        "vsi_range_trend": -0.184,
+        "dip_depth_last90_delta": -0.26
+      },
+      "proxy_flag": false,
+      "redundancy_flag": false,
+      "e1_pass": false
+    },
+    {
+      "feature": "starts_per_engine_hour_delta90",
+      "n_nonnull": 27,
+      "mw_p": 0.7884,
+      "auroc": 0.5179,
+      "r_proxy": {
+        "n_weeks": -0.06,
+        "t_start": 0.018,
+        "span": -0.013
+      },
+      "r_vs_modal": {
+        "vsi_withinwk_std_ratio_30d_w": -0.032,
+        "rest_vsi_p05_delta90": 0.155,
+        "vsi_range_trend": -0.087,
+        "dip_depth_last90_delta": -0.044
+      },
+      "proxy_flag": false,
+      "redundancy_flag": false,
+      "e1_pass": false
+    },
+    {
+      "feature": "dose_dip_x_intensity",
+      "n_nonnull": 27,
+      "mw_p": 0.2319,
+      "auroc": 0.6,
+      "r_proxy": {
+        "n_weeks": 0.105,
+        "t_start": -0.095,
+        "span": 0.04
+      },
+      "r_vs_modal": {
+        "vsi_withinwk_std_ratio_30d_w": 0.071,
+        "rest_vsi_p05_delta90": 0.333,
+        "vsi_range_trend": 0.041,
+        "dip_depth_last90_delta": -0.512
+      },
+      "proxy_flag": false,
+      "redundancy_flag": false,
+      "e1_pass": false
+    },
+    {
+      "feature": "dropout_share_delta90",
+      "n_nonnull": 34,
+      "mw_p": 0.8473,
+      "auroc": 0.5214,
+      "r_proxy": {
+        "n_weeks": 0.041,
+        "t_start": -0.085,
+        "span": 0.102
+      },
+      "r_vs_modal": {
+        "vsi_withinwk_std_ratio_30d_w": -0.269,
+        "rest_vsi_p05_delta90": -0.134,
+        "vsi_range_trend": -0.25,
+        "dip_depth_last90_delta": -0.002
+      },
+      "proxy_flag": false,
+      "redundancy_flag": false,
+      "e1_pass": false
+    },
+    {
+      "feature": "dip_seasonal_contrast",
+      "n_nonnull": 16,
+      "mw_p": 0.8269,
+      "auroc": 0.5089,
+      "r_proxy": {
+        "n_weeks": -0.046,
+        "t_start": -0.012,
+        "span": 0.046
+      },
+      "r_vs_modal": {
+        "vsi_withinwk_std_ratio_30d_w": -0.284,
+        "rest_vsi_p05_delta90": -0.362,
+        "vsi_range_trend": -0.058,
+        "dip_depth_last90_delta": 0.786
+      },
+      "proxy_flag": false,
+      "redundancy_flag": false,
+      "e1_pass": false
+    }
+  ],
+  "E2": {
+    "hard_start_goodv_rate_delta90": {
+      "auroc": 0.9536,
+      "delta": 0.0179
+    },
+    "dip_resid_trend_12w": {
+      "auroc": 0.9179,
+      "delta": -0.0179
+    },
+    "lowv_crank_share_delta90": {
+      "auroc": 0.9357,
+      "delta": 0.0
+    },
+    "starts_per_engine_hour_delta90": {
+      "auroc": 0.925,
+      "delta": -0.0107
+    },
+    "dose_dip_x_intensity": {
+      "auroc": 0.9321,
+      "delta": -0.0036
+    },
+    "dropout_share_delta90": {
+      "auroc": 0.9179,
+      "delta": -0.0179
+    },
+    "dip_seasonal_contrast": {
+      "auroc": 0.9,
+      "delta": -0.0357
+    }
+  },
+  "E3": null,
+  "verdicts": {
+    "hard_start_goodv_rate_delta90": {
+      "verdict": "REJECT",
+      "reason": "E1 fail (mw_p=0.2104, auroc=0.6161)"
+    },
+    "dip_resid_trend_12w": {
+      "verdict": "REJECT",
+      "reason": "E2 delta=-0.0179 <= 0"
+    },
+    "lowv_crank_share_delta90": {
+      "verdict": "REJECT",
+      "reason": "E1 fail (mw_p=1.0, auroc=0.5107)"
+    },
+    "starts_per_engine_hour_delta90": {
+      "verdict": "REJECT",
+      "reason": "E1 fail (mw_p=0.7884, auroc=0.5179)"
+    },
+    "dose_dip_x_intensity": {
+      "verdict": "REJECT",
+      "reason": "E1 fail (mw_p=0.2319, auroc=0.6)"
+    },
+    "dropout_share_delta90": {
+      "verdict": "REJECT",
+      "reason": "E1 fail (mw_p=0.8473, auroc=0.5214)"
+    },
+    "dip_seasonal_contrast": {
+      "verdict": "REJECT",
+      "reason": "E1 fail (mw_p=0.8269, auroc=0.5089)"
+    }
+  }
+}

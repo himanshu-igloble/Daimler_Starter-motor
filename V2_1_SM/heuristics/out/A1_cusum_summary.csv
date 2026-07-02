@@ -1,0 +1,3 @@
+heuristic,recall_n_of_14,recall_frac,med_lead_d,nf_ever_fire_n,nf_ever_fire_frac,nf_eps_per_truck_year
+A1_cusum,7,0.5,148.0,14,0.7,0.592
+A1_ewma,7,0.5,148.0,14,0.7,0.377

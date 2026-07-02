@@ -1,0 +1,4 @@
+signal,window_days_lo,window_days_hi,action,n_support
+A2_battery_cascade,28.0,91.0,Inspect within 4-13 weeks; battery-first triage,4
+persistence_AND_RED,126.0,284.0,Schedule inspection ~6 months (median 206 d),10
+AMBER_only,,,Monitor; no failed truck observed in AMBER-only (empirically empty),0

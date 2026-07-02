@@ -1,10 +1,13 @@
 # Daimler / BharatBenz Starter Motor — RUL & Risk Prediction
 
 **Branches:**
-[![main](https://img.shields.io/badge/main-all_3_versions-2ea44f?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/main)
+[![main](https://img.shields.io/badge/main-all_6_versions-2ea44f?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/main)
 [![v1-sm](https://img.shields.io/badge/v1--sm-baseline-1f6feb?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v1-sm)
 [![v1.1-sm](https://img.shields.io/badge/v1.1--sm-audited_redesign-1f6feb?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v1.1-sm)
 [![v2-sm](https://img.shields.io/badge/v2--sm-decision_layer-1f6feb?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v2-sm)
+[![v2.1-sm](https://img.shields.io/badge/v2.1--sm-improvement_hunt-8250df?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v2.1-sm)
+[![v3-sm](https://img.shields.io/badge/v3--sm-interaction_closure-8250df?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v3-sm)
+[![v3.1-sm](https://img.shields.io/badge/v3.1--sm-state_engine-8250df?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v3.1-sm)
 
 Predictive-maintenance pipeline for the **starter motor** of the BharatBenz 5528T heavy-duty truck.
 From on-board CAN-bus telemetry it answers: **which** trucks are at risk, **how early** a failure can be
@@ -33,27 +36,45 @@ start reading `V2_SM/deliverables/…-d10-executive-recommendation.md`.
 > day-precision RUL is mathematically closed at this sample size — so we ship **risk tiers + validated
 > alerts + evidence-conditional windows**, not a per-truck countdown.
 
+> **Validated & frozen (V2.1 · V3 · V3.1).** Three pre-registered improvement hunts stress-tested the
+> frozen model — **17 candidate features/rules in total, all REJECT**; the baseline reproduced to the
+> 4th decimal every time (**0.9357 non-nested / 0.9321 nested**). They confirm the ceiling is a *data*
+> limit, not a method limit, and each shipped a durable operational asset: **V2.1** — a recall-lever
+> pager (A3: non-failed false alarms **20/20 → 7/20** at held recall 13/14) plus A5 graded maintenance
+> windows; **V3** — the interaction/usage-feature closure (GBM probe **0.843 < 0.932** = data-not-method);
+> **V3.1** — an operational-state engine (all SV gates pass), battery-vs-starter triage (**9/11**
+> archetype convergence, **0/20** false attributions on healthy trucks), maintenance-window validation
+> (**9/11** failures inside the predicted window), and the DICV management validation dossier under
+> `V1.1_SM/reports/`. Full detail in [`VERSION_COMPARISON_SM.md`](./VERSION_COMPARISON_SM.md).
+
 ---
 
 ## 1. Repository & branch map
 
 Each version lives on its own branch (so you can roll back to any version at any time); `main` carries
-**all three** versions merged together.
+**all six** versions merged together. V1 → V2 are the delivery lineage; V2.1 / V3 / V3.1 are frozen,
+pre-registered validation hunts that re-confirmed the ceiling.
 
 | Branch | What's on it | Use it to… |
 |---|---|---|
-| **`main`** | All three versions (`V1_SM/` + `V1.1_SM/` + `V2_SM/`) + this README + requirements + comparison | Browse everything in one place |
+| **`main`** | All six versions (`V1_SM/` + `V1.1_SM/` + `V2_SM/` + `V2_1_SM/` + `V3_SM/` + `V3_1_SM/`) + this README + requirements + comparison | Browse everything in one place |
 | **`v1-sm`** | **Only** the V1 deliverable (baseline classifier) | Check out / roll back to V1 in isolation |
 | **`v1.1-sm`** | **Only** the V1.1 deliverable (audited nested redesign) | Check out / roll back to V1.1 in isolation |
 | **`v2-sm`** | **Only** the V2 deliverable (decision layer + deployment system) | Check out / roll back to V2 in isolation |
+| **`v2.1-sm`** | **Only** the V2.1 hunt (richer heuristics/features; A3 recall lever + A5 windows) | Check out / roll back to V2.1 in isolation |
+| **`v3-sm`** | **Only** the V3 hunt (interaction/usage feature closure) | Check out / roll back to V3 in isolation |
+| **`v3.1-sm`** | **Only** the V3.1 hunt (state engine + triage + window validation) | Check out / roll back to V3.1 in isolation |
 
 ```bash
 git clone https://github.com/himanshu-igloble/Daimler_Starter-motor
 cd Daimler_Starter-motor
 git switch v1-sm     # see ONLY V1
 git switch v1.1-sm   # see ONLY V1.1
-git switch v2-sm     # see ONLY V2
-git switch main      # see ALL THREE
+git switch v2-sm     # see ONLY V2  (deployable)
+git switch v2.1-sm   # see ONLY V2.1 validation hunt
+git switch v3-sm     # see ONLY V3  validation hunt
+git switch v3.1-sm   # see ONLY V3.1 validation hunt
+git switch main      # see ALL SIX
 ```
 
 ---
@@ -61,7 +82,9 @@ git switch main      # see ALL THREE
 ## 2. Version comparison
 
 The model is **frozen from V1.1 onward** (nested AUROC 0.9321, 10-week horizon); the differences are in
-honesty/calibration (V1 → V1.1) and in the operational decision layer (V1.1 → V2).
+honesty/calibration (V1 → V1.1) and in the operational decision layer (V1.1 → V2). V2.1 / V3 / V3.1 are
+three pre-registered hunts that tried and failed to beat it (17 candidates, all REJECT) — see
+[`VERSION_COMPARISON_SM.md`](./VERSION_COMPARISON_SM.md) for their full head-to-head.
 
 | Dimension | **V1** — Baseline | **V1.1** — Audited Redesign | **V2** — Decision Layer |
 |---|---|---|---|
@@ -76,9 +99,10 @@ honesty/calibration (V1 → V1.1) and in the operational decision layer (V1.1 �
 | Economics | not modeled | tiers by Youden (FP-averse) | **Youden-queue saves ~43%** vs run-to-failure |
 | Verdict | classifier works, lead-time doesn't | the honest ceiling: 0.932 + 10-wk warning | model finished; the win is the **decision layer** |
 
-**Full head-to-head:** [`VERSION_COMPARISON_SM.md`](./VERSION_COMPARISON_SM.md).
-**Performance ceiling** (all 3 versions): nested AUROC ≈ 0.932 · 10-week horizon · alert recall ~10–11/14
-(4/14 silent/abrupt failures are structurally invisible). Breaking it needs **new signals**, not new models.
+**Full head-to-head (incl. V2.1 / V3 / V3.1):** [`VERSION_COMPARISON_SM.md`](./VERSION_COMPARISON_SM.md).
+**Performance ceiling** (all six versions, re-confirmed four consecutive times through V3.1): nested
+AUROC ≈ 0.932 · 10-week horizon · alert recall ~10–11/14 (4/14 silent/abrupt failures are structurally
+invisible). Breaking it needs **new signals**, not new models.
 
 ---
 
@@ -89,10 +113,15 @@ honesty/calibration (V1 → V1.1) and in the operational decision layer (V1.1 �
 | **V1** | `V1_SM/` | `reports/V1_SM_final_report.md` | `src/V1_SM_build_weekly_cache → crank_events → features → feature_selection → ridge_classifier → lead_time → final_report → production_graphs` |
 | **V1.1** | `V1.1_SM/` | `reports/V1_1_SM_RESULTS_MASTER.md`, `Plan/V1_1_SM_spec.md` | `src/V1_1_SM_build_daily_cache → features → nested_ridge → horizon → alerts → explainability → daily_risk_graphs` |
 | **V2** | `V2_SM/` | `deliverables/…-sm-v2-d01..d10-*.md` (10 deliverables) | `v2_system/V2_weekly_pipeline.py`; deploy via `v2_system/deployment_kit/DEPLOYMENT_RUNBOOK.md` |
+| **V2.1** | `V2_1_SM/` | `reports/V2_1_SM_exec_summary.md`, `_verdict.md` | `params/` gate → `features/` → `heuristics/` → `reports/build_comparison.py` |
+| **V3** | `V3_SM/` | `reports/V3_SM_exec_summary.md`, `_verdict.md` | `params/` gate → `features/` (incl. `out/`, `tests/`) → `analysis/` → `reports/` |
+| **V3.1** | `V3_1_SM/` | `reports/V3_1_SM_exec_summary.md`, `_verdict.md`, `_state_engine_report.md` | `params/` → `state/` engine (→ `state/out/`) → `features/` → `heuristics/` (T1/T2/T3) → `analysis/` → `reports/` |
 
-Each version dir also has `cache/` (committed intermediates — pipelines reproduce **without** the raw
-data), `results/` (machine-readable CSV/JSON), `graphs/`/`visualizations`, and `presentation/` (decks).
-V2 additionally ships a full `v2_system/` (monitors, registry, refit gates, shadow-quarter sim, ops runbooks).
+Each version dir also has `cache/` or `state/out/` (committed intermediates — pipelines reproduce
+**without** the raw data), `results/`/`analysis/out/` (machine-readable CSV/JSON),
+`graphs/`/`visualizations`, and `presentation/` (decks). V2 additionally ships a full `v2_system/`
+(monitors, registry, refit gates, shadow-quarter sim, ops runbooks). V2.1 / V3 / V3.1 each carry a
+pre-registered `Plan/…_spec.md` and a one-verdict `reports/…_verdict.md`.
 
 **Where to start:** `V2_SM/deliverables/…-d10-executive-recommendation.md` (the final word) →
 `VERSION_COMPARISON_SM.md` (what changed) → each version's report above.

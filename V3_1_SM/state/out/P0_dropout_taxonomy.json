@@ -1,0 +1,172 @@
+{
+  "VIN10_F_SM": {
+    "DROPOUT_RUNNING": 6,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 3
+  },
+  "VIN10_NF_SM": {
+    "DROPOUT_RUNNING": 21,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 11
+  },
+  "VIN11_F_SM": {
+    "DROPOUT_RUNNING": 4,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN11_NF_SM": {
+    "DROPOUT_RUNNING": 57,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 19
+  },
+  "VIN12_F_SM": {
+    "DROPOUT_RUNNING": 2,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 0
+  },
+  "VIN12_NF_SM": {
+    "DROPOUT_RUNNING": 15,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 30
+  },
+  "VIN13_F_SM": {
+    "DROPOUT_RUNNING": 4,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN13_NF_SM": {
+    "DROPOUT_RUNNING": 41,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 18
+  },
+  "VIN14_F_SM": {
+    "DROPOUT_RUNNING": 2,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN14_NF_SM": {
+    "DROPOUT_RUNNING": 20,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 6
+  },
+  "VIN15_NF_SM": {
+    "DROPOUT_RUNNING": 8,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 12
+  },
+  "VIN16_NF_SM": {
+    "DROPOUT_RUNNING": 30,
+    "OFF_CONFIRMED": 2,
+    "UNKNOWN_GAP": 11
+  },
+  "VIN17_NF_SM": {
+    "DROPOUT_RUNNING": 6,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN18_NF_SM": {
+    "DROPOUT_RUNNING": 47,
+    "OFF_CONFIRMED": 2,
+    "UNKNOWN_GAP": 18
+  },
+  "VIN19_NF_SM": {
+    "DROPOUT_RUNNING": 16,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 10
+  },
+  "VIN1_F_SM": {
+    "DROPOUT_RUNNING": 6,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 9
+  },
+  "VIN1_NF_SM": {
+    "DROPOUT_RUNNING": 10,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 12
+  },
+  "VIN20_NF_SM": {
+    "DROPOUT_RUNNING": 16,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 19
+  },
+  "VIN2_F_SM": {
+    "DROPOUT_RUNNING": 5,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN2_NF_SM": {
+    "DROPOUT_RUNNING": 15,
+    "OFF_CONFIRMED": 2,
+    "UNKNOWN_GAP": 11
+  },
+  "VIN3_F_SM": {
+    "DROPOUT_RUNNING": 0,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN3_NF_SM": {
+    "DROPOUT_RUNNING": 4,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN4_F_SM": {
+    "DROPOUT_RUNNING": 2,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 1
+  },
+  "VIN4_NF_SM": {
+    "DROPOUT_RUNNING": 9,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 8
+  },
+  "VIN5_F_SM": {
+    "DROPOUT_RUNNING": 4,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 1
+  },
+  "VIN5_NF_SM": {
+    "DROPOUT_RUNNING": 13,
+    "OFF_CONFIRMED": 2,
+    "UNKNOWN_GAP": 23
+  },
+  "VIN6_F_SM": {
+    "DROPOUT_RUNNING": 5,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 2
+  },
+  "VIN6_NF_SM": {
+    "DROPOUT_RUNNING": 12,
+    "OFF_CONFIRMED": 5,
+    "UNKNOWN_GAP": 20
+  },
+  "VIN7_F_SM": {
+    "DROPOUT_RUNNING": 5,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 5
+  },
+  "VIN7_NF_SM": {
+    "DROPOUT_RUNNING": 13,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 8
+  },
+  "VIN8_F_SM": {
+    "DROPOUT_RUNNING": 18,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 19
+  },
+  "VIN8_NF_SM": {
+    "DROPOUT_RUNNING": 13,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 11
+  },
+  "VIN9_F_SM": {
+    "DROPOUT_RUNNING": 22,
+    "OFF_CONFIRMED": 1,
+    "UNKNOWN_GAP": 13
+  },
+  "VIN9_NF_SM": {
+    "DROPOUT_RUNNING": 24,
+    "OFF_CONFIRMED": 0,
+    "UNKNOWN_GAP": 13
+  }
+}

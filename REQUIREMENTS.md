@@ -51,9 +51,10 @@ evidence-conditional window, never a countdown.
 
 - **Python** 3.11+.
 - **Libraries:** `numpy`, `pandas`, `scipy`, `scikit-learn` (RidgeClassifier), `matplotlib`,
-  `lifelines` (survival); `openpyxl` (xlsx), `python-pptx` (decks).
+  `lifelines` (survival); `polars` + `pyarrow` (V3.1 state engine — fast episode/parquet I/O);
+  `openpyxl` (xlsx), `python-pptx` (decks), `reportlab` (V1.1 DICV validation-dossier PDFs).
   ```bash
-  pip install numpy pandas scipy scikit-learn matplotlib lifelines openpyxl python-pptx
+  pip install numpy pandas scipy scikit-learn matplotlib lifelines polars pyarrow openpyxl python-pptx reportlab
   ```
 - **Run:** execute each version's stage scripts in dependency order (see README §3); V2 deploys via
   `V2_SM/v2_system/V2_weekly_pipeline.py` and `deployment_kit/DEPLOYMENT_RUNBOOK.md`.
