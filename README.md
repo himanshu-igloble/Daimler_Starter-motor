@@ -199,3 +199,19 @@ py -3 V1.1_SM/models/V1_1_ridge_champion/V1_1_SM_predict.py \
 > deployable model must be one model, so the bundle ships the **modal winner subset** + a pooled-OOF Platt
 > calibrator; its resubstitution scores on the 34 training trucks do not reproduce the nested OOF numbers
 > (expected, documented in the artifact README). The tier is the primary decision output.
+
+### 7b. Horizon + window rules (the RUL replacement — rule-based, not a model)
+
+Per-truck day-precision RUL is mathematically closed at n=34, so SM ships a **deterministic** detection-horizon
++ alert-channel wrapper (`is_ml_model=False`) in
+[`V1.1_SM/models/horizon_window_rules/`](./V1.1_SM/models/horizon_window_rules):
+
+| File | What it is |
+|---|---|
+| [`V1_1_SM_horizon_window_bundle.joblib`](./V1.1_SM/models/horizon_window_rules/V1_1_SM_horizon_window_bundle.joblib) | frozen rules: **k\*=10-week** detection window, AUROC(k) decay table, 3 alert channels + validated 34-truck policy, validated leads |
+| [`V1_1_SM_predict.py`](./V1.1_SM/models/horizon_window_rules/V1_1_SM_predict.py) | loader/CLI — `maintenance_window(tier)`, `horizon_auroc(k)`, `channel_lead_summary()` |
+| provenance | `V1_1_SM_horizon_curve.csv`, `V1_1_SM_alert_policy.csv`, verification + MANIFEST |
+
+**Rule:** classifier RED → schedule maintenance within the **k\*=10-week (~70-day)** window (AUROC 0.9357 at k=0,
+in-spec through week 16). Validated first-fire leads across **13/14** failed trucks: median **168 d** (min 28, max 392);
+1 silent failure. Leads are historical validation observations, not forward guarantees.

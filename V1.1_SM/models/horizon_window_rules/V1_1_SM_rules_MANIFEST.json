@@ -1,0 +1,57 @@
+{
+  "artifact": "V1_1_SM horizon + window rules (starter motor, rule-based)",
+  "is_ml_model": false,
+  "created": "2026-07-07",
+  "git_head": "1308b23e8778b32b4e1d32e3eb62dd3e95fde6f7",
+  "environment": {
+    "python": "3.11.9",
+    "sklearn": "1.8.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "joblib": "1.5.3",
+    "platform": "Windows-10-10.0.26100-SP0"
+  },
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 3689,
+      "sha256": "510cfbd23f7c46f0818f71a4ab9eb68f0ed7cd1254116556e64e5d95dbdd4137"
+    },
+    {
+      "name": "V1_1_SM_alert_policy.csv",
+      "bytes": 2513,
+      "sha256": "be29a62ae830c555564656dd9d66b00193f5d7d3321fb6394350251bf7f735a6"
+    },
+    {
+      "name": "V1_1_SM_horizon_curve.csv",
+      "bytes": 3207,
+      "sha256": "3967c035febc73079edcac0734c9601323e81d337f667e0bd348d9641dfafe2c"
+    },
+    {
+      "name": "V1_1_SM_horizon_window_bundle.joblib",
+      "bytes": 6684,
+      "sha256": "803fb1ac84912e628f776d91bf7b0bad24393248eb8f7dbcec9a02a221f111be"
+    },
+    {
+      "name": "V1_1_SM_predict.py",
+      "bytes": 4990,
+      "sha256": "31afabe24763d7c0bf3915c62d9af9c8025e2798b4757e5834872512050e4140"
+    },
+    {
+      "name": "V1_1_SM_rules_verification.json",
+      "bytes": 925,
+      "sha256": "663be83a58c09c785c72101be87ffb82e467140d224d52a111a8813c4066a913"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "STARTER MOTOR\\V1.1\\results\\V1_1_SM_horizon_curve.csv",
+      "sha256": "3967c035febc73079edcac0734c9601323e81d337f667e0bd348d9641dfafe2c"
+    },
+    {
+      "path": "STARTER MOTOR\\V1.1\\results\\V1_1_SM_alert_policy.csv",
+      "sha256": "be29a62ae830c555564656dd9d66b00193f5d7d3321fb6394350251bf7f735a6"
+    }
+  ],
+  "readme_present": true
+}
