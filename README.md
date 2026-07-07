@@ -163,3 +163,39 @@ calibration + validated alerts + the horizon. **V2** built the **decision layer*
 pager (0.19 false episodes/truck-year), a cost-optimal **Youden-queue** policy (~43% saving), honest
 evidence-conditional windows instead of RUL, and a production system with governance and a shadow
 quarter. The next gain requires **new sensors**, not new models. Ship **tiers + alerts + windows**.
+
+---
+
+## 7. Loadable model artifact (deployable)
+
+The frozen V1.1 champion classifier is packaged as a **load-and-predict** joblib bundle — no re-fit needed.
+
+**Path (this branch):** [`V1.1_SM/models/V1_1_ridge_champion/`](./V1.1_SM/models/V1_1_ridge_champion)
+
+| File | What it is |
+|---|---|
+| [`V1_1_SM_champion_bundle.joblib`](./V1.1_SM/models/V1_1_ridge_champion/V1_1_SM_champion_bundle.joblib) | fitted sklearn `Pipeline` (median-impute → `StandardScaler` → `RidgeClassifier(α=1.0)`, fit on all 34 trucks) + **Platt calibrator** (`LogisticRegression`, fit on modal-subset LOVO out-of-fold decision values) + tier bands + auxiliary Youden threshold + metadata. Plain dict of standard sklearn objects. |
+| [`V1_1_SM_predict.py`](./V1.1_SM/models/V1_1_ridge_champion/V1_1_SM_predict.py) | loader + CLI — `py -3 V1_1_SM_predict.py <features_csv>` |
+| `V1_1_SM_training_matrix.csv` | provenance: the 34-truck feature matrix |
+| `V1_1_SM_model_spec.json` | provenance: the frozen nested-protocol spec |
+| `V1_1_SM_nested_lovo_predictions.csv` | provenance: archived nested OOF predictions |
+| `V1_1_SM_verification.json` | packaging parity gates P1–P4 (real numbers) |
+| `V1_1_SM_MANIFEST.json` | SHA256 of every file + inputs + build env |
+| `README.md` | artifact usage + honesty notes |
+
+**Model:** modal 4-feature subset of the V1.1 nested-LOVO `RidgeClassifier(alpha=1.0)` + Platt calibrator,
+**nested AUROC 0.9321 / modal-subset LOVO AUROC 0.9357** (recall 13/14); alert tiers on the *recalibrated*
+prob `GREEN < 0.35 ≤ AMBER < 0.55 ≤ RED`; auxiliary binary Youden threshold 0.405 (OOF).
+Build + verify scripts: [`V1.1_SM/src/V1_1_SM_package_model.py`](./V1.1_SM/src/V1_1_SM_package_model.py),
+`V1_1_SM_iteration_comparison.py`, `V1_1_SM_bundle_smoketest.py`.
+
+```bash
+# score trucks from a features CSV (the bundle imputes NaNs with training medians)
+py -3 V1.1_SM/models/V1_1_ridge_champion/V1_1_SM_predict.py \
+      V1.1_SM/models/V1_1_ridge_champion/V1_1_SM_training_matrix.csv
+```
+
+> 0.9321 is the **nested** cross-validation estimate (each fold picked its own subset/threshold). A single
+> deployable model must be one model, so the bundle ships the **modal winner subset** + a pooled-OOF Platt
+> calibrator; its resubstitution scores on the 34 training trucks do not reproduce the nested OOF numbers
+> (expected, documented in the artifact README). The tier is the primary decision output.
