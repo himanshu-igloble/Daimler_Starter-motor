@@ -1,0 +1,12 @@
+# SM — last-5-iterations comparison and champion verification
+_Generated 2026-07-07 by V1_1_SM_iteration_comparison.py_
+
+**VERDICT:** user claim "V1.1 produced best results" — **VERIFIED**. V1.1 nested AUROC 0.9321 (modal-subset LOVO 0.9357) is the ceiling; V2.1, V3 and V3.1 each re-derived exactly 0.9357 and accepted no candidate. V1's nominally higher-looking history is artifact-tainted (honest restated baseline 0.8929).
+
+| iteration   |   headline_auroc |   honest_basis | role                            | notes                                                                                                          | evidence                                               |
+|:------------|-----------------:|---------------:|:--------------------------------|:---------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| V1          |           0.9214 |         0.8929 | superseded                      | k=4 winner includes vsi_dominant_freq (1/n_weeks leak artifact, later banned); honest restated nested = 0.8929 | STARTER MOTOR/results/V1_SM_ridge_spec.json            |
+| V1.1        |           0.9321 |         0.9321 | CHAMPION                        | fully nested 34-fold protocol; modal-subset LOVO 0.9357; recall 13/14, spec 15/20 at per-fold Youden           | STARTER MOTOR/V1.1/results/V1_1_SM_model_spec.json     |
+| V2.1        |           0.9357 |         0.9357 | NO_IMPROVEMENT                  | richer heuristics+features hunt; all candidates fail strict bar                                                | STARTER MOTOR/V2.1/features/out/V2_1_gate_summary.json |
+| V3          |           0.9357 |         0.9357 | all 7 REJECT                    | interaction+usage hunt; GBM 0.843 < 0.932 (data-not-method cap)                                                | STARTER MOTOR/V3/features/out/V3_gate_summary.json     |
+| V3.1        |           0.9357 |         0.9357 | all 7 REJECT (4th confirmation) | state-engine pass; baseline_nested 0.9321 restated exactly                                                     | STARTER MOTOR/V3.1/features/out/V3_1_gate_summary.json |

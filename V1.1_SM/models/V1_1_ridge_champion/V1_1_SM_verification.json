@@ -1,0 +1,30 @@
+{
+  "created": "2026-07-07",
+  "P1_closedform_vs_sklearn": {
+    "max_abs_dz": 1.3322676295501878e-15,
+    "tol": 1e-08,
+    "pass": true
+  },
+  "P2_modal_lovo_auroc": {
+    "value": 0.935714,
+    "frozen": 0.9357,
+    "pass": true
+  },
+  "P3_imputer_equivalence": {
+    "atol": 1e-12,
+    "pass": true
+  },
+  "P4_roundtrip": {
+    "pass": true
+  },
+  "auxiliary_threshold_youden_oof": 0.405,
+  "note": "production model = modal subset + pooled-OOF Platt; nested per-fold numbers in the spec are the validation estimate, not this model's resubstitution output",
+  "environment": {
+    "python": "3.11.9",
+    "sklearn": "1.8.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "joblib": "1.5.3",
+    "platform": "Windows-10-10.0.26100-SP0"
+  }
+}
