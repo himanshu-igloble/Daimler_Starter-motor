@@ -23,3 +23,13 @@ GREEN < 0.35 ≤ AMBER < 0.55 ≤ RED; auxiliary binary Youden threshold 0.405 (
 py -3 V1.1_SM/models/V1_1_ridge_champion/V1_1_SM_predict.py \
       V1.1_SM/models/V1_1_ridge_champion/V1_1_SM_training_matrix.csv
 ```
+
+### Horizon + window rules (RUL replacement — rule-based, not a model)
+
+Per-truck day-precision RUL is mathematically closed at n=34, so SM ships a deterministic detection-horizon +
+alert wrapper (`is_ml_model=False`) in `V1.1_SM/models/horizon_window_rules/`:
+
+- **Bundle:** `V1_1_SM_horizon_window_bundle.joblib` — k*=10-week window, AUROC(k) decay table, 3 alert channels + validated 34-truck policy
+- **Loader / CLI:** `V1_1_SM_predict.py` — `maintenance_window(tier)`, `horizon_auroc(k)`, `channel_lead_summary()`
+
+Classifier RED → schedule within the **k*=10-week (~70-day)** window (AUROC 0.9357 at k=0). Validated first-fire leads across **13/14** failed trucks: median **168 d** (min 28, max 392); 1 silent failure. Historical validation, not guarantees.

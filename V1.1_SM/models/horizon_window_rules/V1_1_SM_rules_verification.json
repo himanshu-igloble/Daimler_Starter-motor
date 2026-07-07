@@ -1,0 +1,34 @@
+{
+  "created": "2026-07-07",
+  "artifact": "horizon_window_rules (rule-based, is_ml_model=False)",
+  "R1_horizon_reconcile": {
+    "auroc_at_k0": 0.9357,
+    "frozen_auroc": 0.9357,
+    "k_star_sustained": 10,
+    "frozen_k_star": 10,
+    "in_spec_max_week": 16,
+    "pass": true
+  },
+  "R2_alert_policy": {
+    "n_rows": 34,
+    "n_failed": 14,
+    "n_failed_fired": 13,
+    "all_failed_first_fire_leads_positive": true,
+    "lead_median_days": 168.0,
+    "lead_min_days": 28.0,
+    "lead_max_days": 392.0,
+    "pass": true
+  },
+  "R3_roundtrip": {
+    "pass": true
+  },
+  "note": "rule-based deployable wrapper around frozen detection-horizon and alert channels; replaces per-truck RUL (closed at n=34)",
+  "environment": {
+    "python": "3.11.9",
+    "sklearn": "1.8.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "joblib": "1.5.3",
+    "platform": "Windows-10-10.0.26100-SP0"
+  }
+}
