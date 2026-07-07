@@ -1,0 +1,74 @@
+{
+  "artifact": "V1_1_SM frozen champion (starter motor)",
+  "created": "2026-07-07",
+  "git_head": "92cea879136eea426cfb88eea672e41788420653",
+  "environment": {
+    "python": "3.11.9",
+    "sklearn": "1.8.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "joblib": "1.5.3",
+    "platform": "Windows-10-10.0.26100-SP0"
+  },
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 2529,
+      "sha256": "7963a8faa8bdf12b94789661da6e0d78c38b183f87664a6e32a02db665acf3f8"
+    },
+    {
+      "name": "SM_last5_iteration_comparison.csv",
+      "bytes": 894,
+      "sha256": "dbab8122b8b171e3cce83ba6d3eb4f39a0c32b166b783d0df2d967e50ba79979"
+    },
+    {
+      "name": "SM_last5_iteration_comparison.md",
+      "bytes": 2234,
+      "sha256": "328841db0d795a27267af59e59806731c8c437a5aaf4bcd498b2359fb28b3f03"
+    },
+    {
+      "name": "V1_1_SM_champion_bundle.joblib",
+      "bytes": 3524,
+      "sha256": "09d9f7ee215293fc9917015bffbc16a6c631ecd20ddf300ac0cb73733b870a63"
+    },
+    {
+      "name": "V1_1_SM_model_spec.json",
+      "bytes": 2617,
+      "sha256": "cd70fd50cd3c128cd1dfd599d1a4c0587cc53e038b06f2586f1895934e342550"
+    },
+    {
+      "name": "V1_1_SM_nested_lovo_predictions.csv",
+      "bytes": 4398,
+      "sha256": "3fcfd5b875b405b3193ba622e5e83e42e79df9610abcabbfabc7f13888bf1238"
+    },
+    {
+      "name": "V1_1_SM_predict.py",
+      "bytes": 2480,
+      "sha256": "ec3336480da99e200a4e60f1ea7a10d82ea225694854876705cf24917c2c09d9"
+    },
+    {
+      "name": "V1_1_SM_training_matrix.csv",
+      "bytes": 5915,
+      "sha256": "c8fbca189b54a5f48bb7576aaa0b0d8dada1e19260db53d973ae75f402ee088a"
+    },
+    {
+      "name": "V1_1_SM_verification.json",
+      "bytes": 776,
+      "sha256": "91150beb6bdf056d25a09008d371867201ab65f1aa824598b76a8a542ecf097d"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "STARTER MOTOR\\V1.1\\results\\V1_1_SM_feature_matrix.csv",
+      "sha256": "c8fbca189b54a5f48bb7576aaa0b0d8dada1e19260db53d973ae75f402ee088a"
+    },
+    {
+      "path": "STARTER MOTOR\\V1.1\\results\\V1_1_SM_model_spec.json",
+      "sha256": "cd70fd50cd3c128cd1dfd599d1a4c0587cc53e038b06f2586f1895934e342550"
+    },
+    {
+      "path": "STARTER MOTOR\\V1.1\\results\\V1_1_SM_nested_lovo_predictions.csv",
+      "sha256": "3fcfd5b875b405b3193ba622e5e83e42e79df9610abcabbfabc7f13888bf1238"
+    }
+  ]
+}
