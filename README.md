@@ -9,6 +9,8 @@
 [![v3-sm](https://img.shields.io/badge/v3--sm-interaction_closure-8250df?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v3-sm)
 [![v3.1-sm](https://img.shields.io/badge/v3.1--sm-state_engine-8250df?logo=github)](https://github.com/himanshu-igloble/Daimler_Starter-motor/tree/v3.1-sm)
 
+📦 **Deployable models:** see **[MODELS.md](./MODELS.md)** — verified, self-contained classifier + horizon/window artifacts with loaders.
+
 Predictive-maintenance pipeline for the **starter motor** of the BharatBenz 5528T heavy-duty truck.
 From on-board CAN-bus telemetry it answers: **which** trucks are at risk, **how early** a failure can be
 detected, and **what to do** about it operationally.
